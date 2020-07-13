@@ -1,0 +1,45 @@
+<div class="container" *ngIf="adminUser; else loggedOut">
+  
+  <header class="jumbotron">
+    <p>Please click on originate button to add New Loan information</p>    
+
+    <!-- <button class="btn btn-info" (click)="open(mymodal)">Add/Originate New Loan</button> -->
+    
+        <li class="nav-item">
+            <a href="/adduser" class="nav-link" routerLink="adduser">Add/Originate New Loan</a>
+          </li>
+    
+    
+    <div class="col-md-8" *ngIf="isAddNewLoan"></div>
+
+      <p>Please click on Modify Loans button to MOdify or Delete Existing Loan information</p>
+      
+      <div>
+          <button type="button" class="btn btn-info" >
+           Modify Loans
+          </button>
+      </div>
+
+  </header>
+</div>
+
+<ng-template #loggedOut class="alert-danger">
+
+ You donot have Admin  Please login as Admin.
+  
+</ng-template>
+   
+<!-- <ol>
+    <li>
+      <mat-form-field>
+        <mat-label>What's your name?</mat-label>
+        <input matInput [(ngModel)]="name">
+      </mat-form-field>
+    </li>
+    <li>
+      <button mat-raised-button (click)="openDialog()">Pick one</button>
+    </li>
+    <li *ngIf="animal">
+      You chose: <i>{{animal}}</i>
+    </li>
+  </ol> -->
