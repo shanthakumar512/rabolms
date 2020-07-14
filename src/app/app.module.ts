@@ -11,18 +11,17 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardUserComponent } from './board-user/board-user.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { AddNewLoanComponent } from './add-new-loan/add-new-loan.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {DialogOverviewExampleDialog} from './dialog-overview-example-dialog';
-import { AddUserComponent } from './add-user/add-user.component'
+import { AddUserComponent } from './add-user/add-user.component';
+import { LoanSearchComponent } from './loan-search/loan-search.component';
+import { LoanDetailsComponent } from './loan-details/loan-details.component'
 
 @NgModule({
   declarations: [
@@ -32,11 +31,10 @@ import { AddUserComponent } from './add-user/add-user.component'
     HomeComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    BoardModeratorComponent,
     ProfileComponent,
-    AddNewLoanComponent,
-    DialogOverviewExampleDialog,
-    AddUserComponent
+    AddUserComponent,
+    LoanSearchComponent,
+    LoanDetailsComponent
       ],
   imports: [
     BrowserModule,
@@ -50,7 +48,7 @@ import { AddUserComponent } from './add-user/add-user.component'
     MatFormFieldModule,
     MatInputModule
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 

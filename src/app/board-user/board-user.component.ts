@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
-
+import { TokenStorageService } from '../_services/token-storage.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-board-user',
   templateUrl: './board-user.component.html',
@@ -8,17 +8,15 @@ import { UserService } from '../_services/user.service';
 })
 export class BoardUserComponent implements OnInit {
   content = '';
-
-  constructor(private userService: UserService) { }
+  
+  constructor(private token: TokenStorageService,  private router : Router) { }
 
   ngOnInit() {
-    this.userService.getUserBoard().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
+   
   }
+
+  openSearchForm(){
+    this.router.navigateByUrl("/searchLoan")
+  }
+
 }

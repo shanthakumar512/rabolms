@@ -1,15 +1,16 @@
+
 <header class="jumbotron">
         
-<div class="col-md-10">
-        <h2> Add the New user details</h2>
-    <div class="card card-container">
-             
+        <div class="col-md-10">
+                <h2>Details of Searched Loan</h2>
+            <div class="card card-container">
+
 <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
           
                 <label for="userFirstname">User First Name</label> <input type="text" class="form-control" name="userFirstname" 
-                [(ngModel)]="form.userFirstname" required minlength="1" maxlength="20"
-                #userFirstname="ngModel" />
+                [(ngModel)]="loanUser.userFirstname" required minlength="1" maxlength="20"
+                #userFirstname="ngModel"  readonly ="isAdminRole"/>
             <div class="alert-danger" *ngIf="f.submitted && userFirstname.invalid">
                 <div *ngIf="userFirstname.errors.required"> FirstName is required</div>
                 <div *ngIf="userFirstname.errors.minlength">
@@ -23,8 +24,8 @@
 
         <div class="form-group">
             <label for="userLastname">User Last Name</label>
-            <input type="text" class="form-control" name="userLastname" [(ngModel)]="form.userLastname" required minlength="1" maxlength="20"
-                #userLastname="ngModel" />
+            <input type="text" class="form-control" name="userLastname" [(ngModel)]="loanUser.userLastname" required minlength="1" maxlength="20"
+                #userLastname="ngModel" readonly="isAdminRole" />
             <div class="alert-danger" *ngIf="f.submitted && userLastname.invalid">
                 <div *ngIf="userLastname.errors.required">LastName is required</div>
                 <div *ngIf="userLastname.errors.minlength">
@@ -38,7 +39,7 @@
 
         <div class="form-group">
             <label for="loanNumber">Loan Number</label>
-            <input type="text" class="form-control" name="loanNumber" [(ngModel)]="form.loanNumber" required #loanNumber="ngModel" />
+            <input type="text" class="form-control" name="loanNumber" [(ngModel)]="loanUser.loanNumber" required #loanNumber="ngModel" readonly ="isAdminRole" />
             <div class="alert-danger" *ngIf="f.submitted && loanNumber.invalid">
                 <div *ngIf="loanNumber.errors.required">Loan Number is required</div>
             </div>
@@ -47,8 +48,8 @@
         
         <div class="form-group">
                 <label for="addressLine1">Address Line 1</label>
-                <input type="text" class="form-control" name="addressLine1" [(ngModel)]="form.addressLine1" required minlength="1" maxlength="20"
-                    #addressLine1="ngModel" />
+                <input type="text" class="form-control" name="addressLine1" [(ngModel)]="loanUser.addressLine1" required minlength="1" maxlength="20"
+                    #addressLine1="ngModel"readonly ="isAdminRole"  />
                 <div class="alert-danger" *ngIf="f.submitted && addressLine1.invalid">
                     <div *ngIf="addressLine1.errors.required">Address Line1 is required</div>
                     <div *ngIf="addressLine1.errors.minlength">
@@ -62,8 +63,8 @@
 
             <div class="form-group">
                     <label for="addressLine2">Address Line 2</label>
-                    <input type="text" class="form-control" name="addressLine2" [(ngModel)]="form.addressLine2"  maxlength="20"
-                        #addressLine2="ngModel" />
+                    <input type="text" class="form-control" name="addressLine2" [(ngModel)]="loanUser.addressLine2"  maxlength="20"
+                        #addressLine2="ngModel"  readonly ="isAdminRole"/>
                     <div class="alert-danger" *ngIf="f.submitted && addressLine2.invalid">
                         <div *ngIf="addressLine2.errors.maxlength">
                                 Address Line 2 must be at most 20 characters
@@ -73,8 +74,8 @@
 
             <div class="form-group">
                     <label for="addressLine3">Address Line 3</label>
-                    <input type="text" class="form-control" name="addressLine3" [(ngModel)]="form.addressLine3"  maxlength="20"
-                        #addressLine3="ngModel" />
+                    <input type="text" class="form-control" name="addressLine3" [(ngModel)]="loanUser.addressLine3"  maxlength="20"
+                        #addressLine3="ngModel" readonly ="isAdminRole"/>
                     <div class="alert-danger" *ngIf="f.submitted && addressLine3.invalid">
                         <div *ngIf="addressLine3.errors.maxlength">
                                 Address Line 3 must be at most 20 characters
@@ -84,8 +85,8 @@
 
             <div class="form-group">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" name="city" [(ngModel)]="form.city" required minlength="1" maxlength="20"
-                        #city="ngModel" />
+                    <input type="text" class="form-control" name="city" [(ngModel)]="loanUser.city" required minlength="1" maxlength="20"
+                        #city="ngModel" readonly ="isAdminRole" />
                     <div class="alert-danger" *ngIf="f.submitted && city.invalid">
                         <div *ngIf="city.errors.required">City is required</div>
                         <div *ngIf="city.errors.minlength">
@@ -99,8 +100,8 @@
 
                 <div class="form-group">
                         <label for="state">State</label>
-                        <input type="text" class="form-control" name="state" [(ngModel)]="form.state" required minlength="1" maxlength="20"
-                            #state="ngModel" />
+                        <input type="text" class="form-control" name="state" [(ngModel)]="loanUser.state" required minlength="1" maxlength="20"
+                            #state="ngModel" readonly ="isAdminRole"/>
                         <div class="alert-danger" *ngIf="f.submitted && state.invalid">
                             <div *ngIf="state.errors.required">state is required</div>
                             <div *ngIf="state.errors.minlength">
@@ -115,8 +116,8 @@
                 
                     <div class="form-group">
                             <label for="country">Country</label>
-                            <input type="text" class="form-control" name="country" [(ngModel)]="form.country" required minlength="1" maxlength="20"
-                                #country="ngModel" />
+                            <input type="text" class="form-control" name="country" [(ngModel)]="loanUser.country" required minlength="1" maxlength="20"
+                                #country="ngModel" readonly ="isAdminRole"/>
                             <div class="alert-danger" *ngIf="f.submitted && country.invalid">
                                 <div *ngIf="country.errors.required">Country is required</div>
                                 <div *ngIf="country.errors.minlength">
@@ -129,18 +130,14 @@
                         </div>
     
 
-        <div class="form-group">
-            <button class="btn btn-primary ">Add User</button>
+        <div class="form-group" *ngIf="isAdminRole">
+            <button class="btn btn-primary ">Update User</button>
         </div>
-
+        <button class="btn btn-primary ">Back</button>
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-            Adding New Loan failed!
-            <br />{{ errorMessage }}
-        </div>
+               Updating  Loan  Details failed!
+                <br/>{{ errorMessage }}
+            </div>
         </form>
-
-        <div class="alert alert-success" *ngIf="isSuccessful">
-            New Loan entry is Successful!!
-        </div>
-    </div>
+</div>
 </div>

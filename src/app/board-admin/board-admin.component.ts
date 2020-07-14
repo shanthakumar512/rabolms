@@ -3,7 +3,7 @@ import { UserService } from '../_services/user.service';
 // import {NgbModal, NgbDate,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {TokenStorageService}  from '../_services/token-storage.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {DialogOverviewExampleDialog} from '../dialog-overview-example-dialog';
+import { Router } from '@angular/router';
 
 
 
@@ -23,8 +23,8 @@ export class BoardAdminComponent implements OnInit {
   name: string;
 
 
-  constructor(private userService: UserService, 
-    public dialog: MatDialog, private tokenStorageService: TokenStorageService) { }
+  constructor(private userService: UserService,  private router: Router,
+     private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -45,18 +45,14 @@ export class BoardAdminComponent implements OnInit {
       }
     );
   }
-  openDialog(): void {
-    console.log('The dialog is open');
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '500px',
-      data: {name: this.name, animal: this.animal}
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
+  openAddUserForm(){
+    this.router.navigateByUrl("/adduser")
   }
+  openSearchForm(){
+    this.router.navigateByUrl("/searchLoan")
+  }
+
 }
 
 

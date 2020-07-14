@@ -8,8 +8,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
-mat-dialog-container#modal-component {
-    border: 3px solid #262626;
-    border-radius: 11px;
-    background-color: #1a1a1a;
-}
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }

@@ -1,0 +1,42 @@
+<div class="col-md-10">
+    <h2> Enter Loan search criteria</h2>
+    <div class="card card-container">
+
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && search()" #f="ngForm" novalidate>
+            <div class="row">
+                <div class="col-sm-5 form-group">
+                    <label for="userFirstname">User First Name</label>
+                    <input type="text" class="form-control" name="userFirstname" [(ngModel)]="form.userFirstname"
+                        #userFirstname="ngModel" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5 form-group">
+                    <label for="userLastname">User Last Name</label>
+                    <input type="text" class="form-control" name="userLastname" [(ngModel)]="form.userLastname"
+                        #userLastname="ngModel" />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-5 form-group">
+
+                    <label for="loanNumber">Loan Number</label>
+                    <input type="text" class="form-control" name="loanNumber" [(ngModel)]="form.loanNumber" #loanNumber="ngModel" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Search Loan</button>
+            </div>
+
+            <div class="alert alert-success" *ngIf="f.submitted && isNotUnique">
+              <p>Search has returned Loan Number as : {{ loanusers.loanNumber}}</p>  
+            <button class="btn btn-primary" (click)="viewDetails()">View Details</button>
+            
+            </div>
+        </form>
+
+
+        
