@@ -19,7 +19,7 @@ export class LoanService {
   constructor(private http: HttpClient) { }
 
   search(user): Observable<LoanUser> {
-    return this.http.post<LoanUser>('http://localhost:8080/api/auth/' + 'searchUser', {
+    return this.http.post<LoanUser>('http://localhost:8081/api/auth/' + 'searchUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       loanNumber: user.loanNumber
@@ -27,7 +27,7 @@ export class LoanService {
   }
 
   updateUser(user): Observable<any> {
-    return this.http.put('http://localhost:8080/api/auth/' + 'updateUser', {
+    return this.http.put('http://localhost:8081/api/auth/' + 'updateUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       loanNumber: user.loanNumber,
