@@ -33,7 +33,7 @@ export class LoanDetailsComponent implements OnInit {
     this.loanUser=history.state;
   }
  goBack(){
-   this.router.navigateByUrl("./searchLoan")
+   this.router.navigateByUrl("/searchLoan")
  }
 
  updateUser(){

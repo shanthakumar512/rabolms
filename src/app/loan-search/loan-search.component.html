@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary btn-block">Search Loan</button>
+                <button class="btn btn-primary">Search Loan</button>
             </div>
 
             <div class="alert alert-success" *ngIf="f.submitted && isNotUnique">
@@ -37,6 +37,11 @@
             <button class="btn btn-primary" (click)="viewDetails()">View Details</button>
             </div>
             </div>
+
+            <div class="alert alert-danger" *ngIf="isSearchFailed" >
+                <p>Search has Failed. Kindly fine tune Search condition</p>  
+            </div>
+            
         </form>
 
 

@@ -5,7 +5,8 @@ html, body {
 }
 body { 
     margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color:rgb(204, 219, 214)
 }
 
 .ng-valid[required], .ng-valid.required  {
@@ -15,3 +16,5 @@ body {
   .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
   }
+
+  

@@ -12,6 +12,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
+    
   }));
 
   it('should create the app', () => {
@@ -20,16 +21,25 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'RaboLMSClient'`, () => {
+  function setup() {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('RaboLMSClient');
-  });
+    return { fixture, app };
+  }
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should create the app', async(() => {
+    const { app } = setup();
+    expect(app).toBeTruthy();
+  }));
+
+  it('should have a tag as \'RaboBank Loan Management system!\'', async(() => {
+    const { app, fixture } = setup();
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('RaboLMSClient app is running!');
-  });
+    const compile = fixture.debugElement.nativeElement;
+    const h1tag = compile.querySelector('a');
+    expect(h1tag.textContent).toBe('RaboBank Loan Management system');
+  }));
+
 });
+
+

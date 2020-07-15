@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ProfileComponent } from './profile.component';
 
 describe('ProfileComponent', () => {
@@ -8,7 +9,11 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      declarations: [ ProfileComponent ],
+      imports : [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([]),
+  ]
     })
     .compileComponents();
   }));
@@ -18,6 +23,11 @@ describe('ProfileComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+  function setup() {
+    const fixture = TestBed.createComponent(ProfileComponent);
+    const app = fixture.debugElement.componentInstance;
+    return { fixture, app };
+  }
 
   it('should create', () => {
     expect(component).toBeTruthy();

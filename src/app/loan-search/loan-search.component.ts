@@ -14,6 +14,7 @@ export class LoanSearchComponent implements OnInit {
   form: any = {};
   loanuser=[];
   loanusers: LoanUser;
+  isSearchFailed=false;
   constructor(private loanService: LoanService, private router : Router){ }
 
   ngOnInit() {
@@ -23,10 +24,15 @@ export class LoanSearchComponent implements OnInit {
     this.loanService.search(this.form).subscribe(
       data => {
         this.isNotUnique=true;
+        this.isSearchFailed =false;
         this.loanusers=data;
+        console.log("Data *******************")
       },
       error =>{
-        this.errormessage=error.error.errormessage;
+        this.isSearchFailed =true;
+        this.isNotUnique=false;
+        console.log("Error *******************")
+        this.errormessage=error;
       }
       
     );
@@ -35,6 +41,10 @@ export class LoanSearchComponent implements OnInit {
 
   viewDetails(){
     this.router.navigateByUrl("/details",{state:this.loanusers})
+  }
+
+  goBack(){
+    this.router.navigateByUrl("/admin")
   }
   
 }
