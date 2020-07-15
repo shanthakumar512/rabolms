@@ -133,8 +133,13 @@
         <div class="form-group" *ngIf="isAdminRole">
             <button class="btn btn-primary ">Update Loan</button>
         </div>
-        <button class="btn btn-primary ">Back</button>
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        <button class="btn btn-primary" (click) ="goBack()">Back to Search</button>
+       
+        <div class="alert alert-success" *ngIf="f.submitted && isUpdateSuccess">
+            Updating  Loan  Details Successful!!
+         </div>
+
+        <div class="alert alert-warning" *ngIf="f.submitted && !isUpdateSuccess">
                Updating  Loan  Details failed!
                 <br/>{{ errorMessage }}
             </div>

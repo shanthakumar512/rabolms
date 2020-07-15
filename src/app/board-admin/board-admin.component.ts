@@ -1,6 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserService } from '../_services/user.service';
-// import {NgbModal, NgbDate,ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {TokenStorageService}  from '../_services/token-storage.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -23,7 +21,7 @@ export class BoardAdminComponent implements OnInit {
   name: string;
 
 
-  constructor(private userService: UserService,  private router: Router,
+  constructor(private router: Router,
      private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
@@ -36,14 +34,6 @@ export class BoardAdminComponent implements OnInit {
       this.adminUser = this.roles.includes('ROLE_ADMIN');
     
     }
-    this.userService.getAdminBoard().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
   }
 
   openAddUserForm(){

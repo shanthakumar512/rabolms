@@ -19,6 +19,7 @@ export class LoanDetailsComponent implements OnInit {
   currentRole:any;
   isAdminRole=false;
   isUpdateSuccess=false;
+  errormessage:any;
   constructor( private route: ActivatedRoute,
     private router: Router, private token: TokenStorageService, private loanService: LoanService,) { 
 
@@ -32,13 +33,15 @@ export class LoanDetailsComponent implements OnInit {
     this.loanUser=history.state;
   }
  goBack(){
-   this.router.navigateByUrl("./")
+   this.router.navigateByUrl("./searchLoan")
  }
 
  updateUser(){
   
    this.loanService.updateUser(this.loanUser).subscribe(data=>{
      this.isUpdateSuccess=true;
-   });
+   }, 
+   error =>{ this.errormessage=error.error.errormessage;} 
+  );
  }
 }

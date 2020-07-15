@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,18 +9,19 @@ import { UserService } from '../_services/user.service';
 export class HomeComponent implements OnInit {
   content: string;
 
-  constructor(private userService: UserService) { }
+  constructor() { }
 
   ngOnInit() {
-    // window.location.reload();
-    this.userService.getPublicContent().subscribe(
+    
+   /*  this.userService.getPublicContent().subscribe(
       data => {
         this.content = data;
       },
       err => {
         this.content = JSON.parse(err.error).message;
       }
-    );
+    ); */
+    this.content="Welcome to Rabobank's Loan Management system. Users can verify the details regarding their Loans. Admins can Add a new Loan detail or Modify data for existing loans";
   }
 
   

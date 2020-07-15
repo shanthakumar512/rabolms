@@ -27,8 +27,6 @@ export class LoanService {
   }
 
   updateUser(user): Observable<any> {
-  console.log(user);
-  console.log(user.userFirstname +"***"+user.userLastname+ "***" + user.loanNumber);
     return this.http.put('http://localhost:8080/api/auth/' + 'updateUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
