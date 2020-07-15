@@ -5,12 +5,12 @@
                 <h2>Details of Searched Loan</h2>
             <div class="card card-container">
 
-<form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+<form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && updateUser()" #f="ngForm" novalidate>
         <div class="form-group">
           
                 <label for="userFirstname">User First Name</label> <input type="text" class="form-control" name="userFirstname" 
                 [(ngModel)]="loanUser.userFirstname" required minlength="1" maxlength="20"
-                #userFirstname="ngModel"  readonly ="isAdminRole"/>
+                #userFirstname="ngModel"  />
             <div class="alert-danger" *ngIf="f.submitted && userFirstname.invalid">
                 <div *ngIf="userFirstname.errors.required"> FirstName is required</div>
                 <div *ngIf="userFirstname.errors.minlength">
@@ -25,7 +25,7 @@
         <div class="form-group">
             <label for="userLastname">User Last Name</label>
             <input type="text" class="form-control" name="userLastname" [(ngModel)]="loanUser.userLastname" required minlength="1" maxlength="20"
-                #userLastname="ngModel" readonly="isAdminRole" />
+                #userLastname="ngModel" [readonly] ="isAdminRole" />
             <div class="alert-danger" *ngIf="f.submitted && userLastname.invalid">
                 <div *ngIf="userLastname.errors.required">LastName is required</div>
                 <div *ngIf="userLastname.errors.minlength">
@@ -117,7 +117,7 @@
                     <div class="form-group">
                             <label for="country">Country</label>
                             <input type="text" class="form-control" name="country" [(ngModel)]="loanUser.country" required minlength="1" maxlength="20"
-                                #country="ngModel" readonly ="isAdminRole"/>
+                                #country="ngModel" [readonly] ="isAdminRole"/>
                             <div class="alert-danger" *ngIf="f.submitted && country.invalid">
                                 <div *ngIf="country.errors.required">Country is required</div>
                                 <div *ngIf="country.errors.minlength">
@@ -131,7 +131,7 @@
     
 
         <div class="form-group" *ngIf="isAdminRole">
-            <button class="btn btn-primary ">Update User</button>
+            <button class="btn btn-primary ">Update Loan</button>
         </div>
         <button class="btn btn-primary ">Back</button>
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

@@ -19,11 +19,26 @@ export class LoanService {
   constructor(private http: HttpClient) { }
 
   search(user): Observable<LoanUser> {
-    // let params = new HttpParams().set("userFirstname",user.userFirstname).set("userLastname", user.userLastname).set("loanNumber",user.loanNumber);
     return this.http.post<LoanUser>('http://localhost:8080/api/auth/' + 'searchUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       loanNumber: user.loanNumber
+    }, httpOptions);
+  }
+
+  updateUser(user): Observable<any> {
+  console.log(user);
+  console.log(user.userFirstname +"***"+user.userLastname+ "***" + user.loanNumber);
+    return this.http.put('http://localhost:8080/api/auth/' + 'updateUser', {
+      userFirstname: user.userFirstname,
+      userLastname: user.userLastname,
+      loanNumber: user.loanNumber,
+      addressLine1:user.addressLine1,
+      addressLine2:user.addressLine2,
+      addressLine3:user.addressLine3,
+      city:user.city,
+      state:user.state,
+      country:user.country
     }, httpOptions);
   }
 
