@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders , HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {LoanUser} from '../loan-user'
+import {LoanUser} from '../loan-user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
-  'Access-Control-Allow-Origin':'*',
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT'
 })
 };
@@ -31,12 +31,12 @@ export class LoanService {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       loanNumber: user.loanNumber,
-      addressLine1:user.addressLine1,
-      addressLine2:user.addressLine2,
-      addressLine3:user.addressLine3,
-      city:user.city,
-      state:user.state,
-      country:user.country
+      addressLine1: user.addressLine1,
+      addressLine2: user.addressLine2,
+      addressLine3: user.addressLine3,
+      city: user.city,
+      state: user.state,
+      country: user.country
     }, httpOptions);
   }
 

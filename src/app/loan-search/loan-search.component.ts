@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LoanService } from  '../_services/loan.service';
+import { LoanService } from '../_services/loan.service';
 import {LoanUser} from '../loan-user';
 import { ActivatedRoute, Router } from '@angular/router';
+import {TokenStorageService} from '../_services/token-storage.service';
+import {AuthService} from '../_services/auth.service';
 
 @Component({
   selector: 'app-loan-search',
@@ -9,42 +11,45 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./loan-search.component.css']
 })
 export class LoanSearchComponent implements OnInit {
-  isNotUnique=false;
-  errormessage='';
+  isNotUnique = false;
+  errormessage = '';
   form: any = {};
-  loanuser=[];
+  loanuser = [];
   loanusers: LoanUser;
-  isSearchFailed=false;
-  constructor(private loanService: LoanService, private router : Router){ }
-
+  isSearchFailed = false;
+  isViewDetails = false;
+  isAdminRole = false;
+  constructor(private authService: AuthService, private loanService: LoanService, private router: Router,
+    private token: TokenStorageService) { }
   ngOnInit() {
+    this.token.getUser().roles[0] === 'ROLE_ADMIN' ? this.isAdminRole = true : this.isAdminRole = false;
   }
-  
-  search(){
+  search() {
     this.loanService.search(this.form).subscribe(
       data => {
-        this.isNotUnique=true;
-        this.isSearchFailed =false;
-        this.loanusers=data;
-        console.log("Data *******************")
+        this.isNotUnique = true;
+        this.isSearchFailed = false;
+        this.loanusers = data;
       },
-      error =>{
-        this.isSearchFailed =true;
-        this.isNotUnique=false;
-        console.log("Error *******************")
-        this.errormessage=error;
+      error => {
+        this.isSearchFailed = true;
+        this.isNotUnique = false;
+        this.errormessage = error;
       }
-      
     );
-  
   }
 
-  viewDetails(){
-    this.router.navigateByUrl("/details",{state:this.loanusers})
+  viewDetails() {
+    this.authService.setModificationEntitlement(false);
+    this.router.navigateByUrl('/details', {state: this.loanusers});
   }
 
-  goBack(){
-    this.router.navigateByUrl("/admin")
+  updateDetails() {
+    this.authService.setModificationEntitlement(true);
+    this.router.navigateByUrl('/details', {state: this.loanusers});
   }
-  
+
+  goBack() {
+    this.router.navigateByUrl('/admin');
+  }
 }

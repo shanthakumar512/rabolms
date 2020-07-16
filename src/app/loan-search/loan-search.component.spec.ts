@@ -31,12 +31,11 @@ describe('LoanSearchComponent', () => {
   });
 
   function setup() {
-    const fixture = TestBed.createComponent(LoanSearchComponent);
     const app = fixture.debugElement.componentInstance;
     return { fixture, app };
   }
   it('should have a tag as \'RaboBank Loan Management system!\'', async(() => {
-    const { app, fixture } = setup();
+    const { app } = setup();
     fixture.detectChanges();
     const compile = fixture.debugElement.nativeElement;
     const h2tag = compile.querySelector('h2');

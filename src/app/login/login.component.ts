@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
         .then(() => {
           window.location.reload();
         });
-        
       },
       err => {
         this.errorMessage = err.error.message;
@@ -47,8 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
-
     window.location.reload();
-    console.log( window.location)
+    console.log( window.location);
   }
 }

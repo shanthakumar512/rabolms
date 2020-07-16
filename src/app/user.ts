@@ -1,10 +1,10 @@
 export interface User {
-    username:String;
-    password:String;
-    email:String;
-    roles:Role;
+    username: string;
+    password: string;
+    email: string;
+    roles: Role;
 }
-export interface  Role{
-    name:String;
-    id:number;
+export interface  Role {
+    name: string;
+    id: number;
 }

@@ -32,16 +32,34 @@
             </div>
 
             <div class="alert alert-success" *ngIf="f.submitted && isNotUnique">
-              <p>Search has returned Loan Number as : {{ loanusers.loanNumber}}</p>  
-            <div *ngIf="isNotUnique">
-            <button class="btn btn-primary" (click)="viewDetails()">View Details</button>
+                    <p> Search Result:</p>  
+                    <table class="table">
+                            <thead>
+                              <tr>
+                                <th>User Firstname</th>
+                                <th>User Lastname</th>
+                                <th>Loan Number</th>
+                              </tr>
+                            </thead>
+                            <tbody>   
+                              <tr class="success">
+                                <td>{{loanusers.userFirstname}}</td>
+                                <td>{{loanusers.userLastname}}</td>
+                                <td>{{loanusers.loanNumber}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+            <div *ngIf="isNotUnique" class="row">
+            <button class="btn btn-primary" (click)="viewDetails()">View Details</button>  
+            <div *ngIf="isAdminRole">
+             | <button class="btn btn-primary" (click)="updateDetails()">Update Details</button>
+            </div>
             </div>
             </div>
 
             <div class="alert alert-danger" *ngIf="isSearchFailed" >
-                <p>Search has Failed. Kindly fine tune Search condition</p>  
-            </div>
-            
+                <p>Kindly fine tune Search criteria and search again</p>  
+            </div>            
         </form>
 
 

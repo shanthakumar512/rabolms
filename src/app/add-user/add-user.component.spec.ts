@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
- import { RouterTestingModule } from '@angular/router/testing';
-    import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AddUserComponent } from './add-user.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 describe('AddUserComponent', () => {
   let component: AddUserComponent;
   let fixture: ComponentFixture<AddUserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddUserComponent ],
-      imports : [
+      declarations: [AddUserComponent],
+      imports: [
         HttpClientTestingModule,
         FormsModule,
         RouterTestingModule.withRoutes([]),
-  ],
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

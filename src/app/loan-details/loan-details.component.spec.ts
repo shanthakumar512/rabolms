@@ -12,7 +12,7 @@ describe('LoanDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoanDetailsComponent ],
-      imports:[
+      imports: [
         FormsModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes([])

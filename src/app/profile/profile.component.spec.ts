@@ -24,7 +24,6 @@ describe('ProfileComponent', () => {
     fixture.detectChanges();
   });
   function setup() {
-    const fixture = TestBed.createComponent(ProfileComponent);
     const app = fixture.debugElement.componentInstance;
     return { fixture, app };
   }

@@ -33,6 +33,4 @@ describe('TokenStorageService', () => {
     const service: TokenStorageService = TestBed.get(TokenStorageService);
     expect(service.signOut).toBeTruthy();
   });
-  
-
 });

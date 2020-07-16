@@ -15,14 +15,14 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent  },
-  { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login/profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: BoardAdminComponent, canActivate: [AuthGuard] },
   { path: 'login/profile', redirectTo: 'home', pathMatch: 'full' },
   { path: 'adduser', component: AddUserComponent, canActivate: [AuthGuard]},
   { path: 'searchLoan', component: LoanSearchComponent, canActivate: [AuthGuard] },
-  {path: 'details',component:LoanDetailsComponent,canActivate: [AuthGuard]},
+  {path: 'details', component: LoanDetailsComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 
 ];

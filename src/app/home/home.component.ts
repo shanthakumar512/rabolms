@@ -12,17 +12,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
-   /*  this.userService.getPublicContent().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    ); */
-    this.content="Welcome to Rabobank's Loan Management system. Users can verify the details regarding their Loans. Admins can Add a new Loan detail or Modify data for existing loans";
+    this.content = 'Welcome to Rabobank Loan Management system. Users can verify the details' +
+    'regarding their Loans. Admins can Add a new Loan detail or Modify data for existing loans';
   }
-
-  
 }

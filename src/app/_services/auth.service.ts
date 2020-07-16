@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { JwtHelperService,JwtModule } from '@auth0/angular-jwt';
+// import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import {TokenStorageService} from './token-storage.service';
 
 const AUTH_API = 'http://localhost:8081/api/auth/';
@@ -14,6 +14,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+
+  isEntitledToModify = false;
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
@@ -29,14 +31,12 @@ export class AuthService {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       loanNumber: user.loanNumber,
-      addressLine1:user.addressLine1,
-      addressLine2:user.addressLine2,
-      addressLine3:user.addressLine3,
-      city:user.city,
-      state:user.state,
-      country:user.country
-     
-    }, httpOptions);
+      addressLine1: user.addressLine1,
+      addressLine2: user.addressLine2,
+      addressLine3: user.addressLine3,
+      city: user.city,
+      state: user.state,
+      country: user.country}, httpOptions);
   }
 
   register(user): Observable<any> {
@@ -44,15 +44,20 @@ export class AuthService {
       username: user.username,
       email: user.email,
       password: user.password
-
     }, httpOptions);
   }
 
 
   public isAuthenticated(): boolean {
-   
     return !!this.tokenStorageService.getToken();
   }
 
+  public isUserEntitledToModify(): boolean {
+     return this.isEntitledToModify;
+  }
+
+  public setModificationEntitlement( isEntitledToModify ) {
+    this.isEntitledToModify = isEntitledToModify;
+  }
 
 }

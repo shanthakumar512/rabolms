@@ -13,12 +13,8 @@ describe('LoanService', () => {
     const service: LoanService = TestBed.get(LoanService);
     expect(service).toBeTruthy();
   });
-  
   it('should  have search method', () => {
     const service: LoanService = TestBed.get(LoanService);
     expect(service.search).toBeTruthy();
   });
-
-  
-
 });

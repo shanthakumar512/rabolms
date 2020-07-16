@@ -21,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AddUserComponent } from './add-user/add-user.component';
 import { LoanSearchComponent } from './loan-search/loan-search.component';
-import { LoanDetailsComponent } from './loan-details/loan-details.component'
+import { LoanDetailsComponent } from './loan-details/loan-details.component';
 
 @NgModule({
   declarations: [

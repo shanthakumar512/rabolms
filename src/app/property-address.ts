@@ -1,8 +1,4 @@
-export interface LoanUser {
-    userEmailId: string;
-    userFirstname: string;
-    userLastname: string;
-    loanNumber: string;
+export interface PropertyAddress {
     addressLine1: string;
     addressLine2: string;
     addressLine3: string;
@@ -10,4 +6,3 @@ export interface LoanUser {
     state: string;
     country: string;
 }
-

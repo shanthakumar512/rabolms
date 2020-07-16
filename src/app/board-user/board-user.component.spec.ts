@@ -11,7 +11,7 @@ describe('BoardUserComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BoardUserComponent ],
-      imports:[
+      imports: [
         RouterTestingModule.withRoutes([])
       ]
     })
@@ -25,20 +25,18 @@ describe('BoardUserComponent', () => {
   });
 
   function setup() {
-    const fixture = TestBed.createComponent(BoardUserComponent);
     const app = fixture.debugElement.componentInstance;
     return { fixture, app };
   }
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have a tag as \'RaboBank Loan Management system!\'', async(() => {
-    const { app, fixture } = setup();
+    const { app } = setup();
     fixture.detectChanges();
     const compile = fixture.debugElement.nativeElement;
     const ptag = compile.querySelector('p');
     expect(ptag.textContent).toBe('Please click on Search Loans button to Search and View Loan information');
   }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

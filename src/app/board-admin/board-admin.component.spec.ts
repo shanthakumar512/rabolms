@@ -4,9 +4,7 @@ import { BoardAdminComponent } from './board-admin.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import {FormsModule} from '@angular/forms';
-import { BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
-  
+import {BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 describe('BoardAdminComponent', () => {
   let component: BoardAdminComponent;
   let fixture: ComponentFixture<BoardAdminComponent>;
@@ -29,7 +27,6 @@ describe('BoardAdminComponent', () => {
     fixture.detectChanges();
   });
   function setup() {
-    const fixture = TestBed.createComponent(BoardAdminComponent);
     const app = fixture.debugElement.componentInstance;
     return { fixture, app };
   }
@@ -40,8 +37,6 @@ describe('BoardAdminComponent', () => {
     const ptag = compile.querySelector('p');
     expect(ptag.textContent).toBe('Please click on originate button to add New Loan information');
   })); */
-
-  
   it('should create', () => {
     expect(component).toBeTruthy();
   });

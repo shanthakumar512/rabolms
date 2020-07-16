@@ -5,7 +5,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { User } from '../user';
-import {LoanService} from '../_services/loan.service'
+import { LoanService } from '../_services/loan.service';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-loan-details',
@@ -14,34 +15,34 @@ import {LoanService} from '../_services/loan.service'
 })
 export class LoanDetailsComponent implements OnInit {
   form: any = {};
-  loanUser:LoanUser;
-  currentUser:User;
-  currentRole:any;
-  isAdminRole=false;
-  isUpdateSuccess=false;
-  errormessage:any;
-  constructor( private route: ActivatedRoute,
-    private router: Router, private token: TokenStorageService, private loanService: LoanService,) { 
-
-    }
+  loanUser: LoanUser;
+  currentUser: User;
+  currentRole: any;
+  isAdminRole = false;
+  isUpdateSuccess = false;
+  errormessage: any;
+  isUpdateAllowed = false;
+  constructor(private route: ActivatedRoute, private router: Router, private token: TokenStorageService,
+  private authservice: AuthService, private loanService: LoanService) {}
 
   ngOnInit() {
+    this.currentUser = this.token.getUser();
+    this.currentRole = this.currentUser.roles;
+    this.currentRole[0] === 'ROLE_ADMIN' ? this.isAdminRole = true : this.isAdminRole = false;
+    this.loanUser = history.state;
+    this.isUpdateAllowed = this.authservice.isUserEntitledToModify();
 
-    this.currentUser=this.token.getUser();
-    this.currentRole=this.currentUser.roles;
-    this.currentRole[0] =='ROLE_ADMIN'? this.isAdminRole=true : this.isAdminRole=false;
-    this.loanUser=history.state;
   }
- goBack(){
-   this.router.navigateByUrl("/searchLoan")
- }
+  goBack() {
+    this.router.navigateByUrl('/searchLoan');
+  }
 
- updateUser(){
-  
-   this.loanService.updateUser(this.loanUser).subscribe(data=>{
-     this.isUpdateSuccess=true;
-   }, 
-   error =>{ this.errormessage=error.error.errormessage;} 
-  );
- }
+  updateUser() {
+    this.loanService.updateUser(this.loanUser).subscribe(data => {
+      this.isUpdateSuccess = true;
+    },
+      error => {
+        this.errormessage = error.error.errormessage;
+      });
+  }
 }
