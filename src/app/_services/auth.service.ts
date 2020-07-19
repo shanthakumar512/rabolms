@@ -39,14 +39,14 @@ export class AuthService {
       country: user.country}, httpOptions);
   }
 
-  register(user): Observable<any> {
+  /* register(user): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
       username: user.username,
       email: user.email,
       password: user.password
     }, httpOptions);
   }
-
+ */
 
   public isAuthenticated(): boolean {
     return !!this.tokenStorageService.getToken();

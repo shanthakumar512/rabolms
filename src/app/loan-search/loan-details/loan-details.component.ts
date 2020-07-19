@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoanUser } from '../loan-user';
+import { LoanUser } from '../../loan-user';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { TokenStorageService } from '../_services/token-storage.service';
-import { User } from '../user';
-import { LoanService } from '../_services/loan.service';
-import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../../_services/token-storage.service';
+import { User } from '../../user';
+import { LoanService } from '../../_services/loan.service';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-loan-details',
@@ -23,7 +23,7 @@ export class LoanDetailsComponent implements OnInit {
   errormessage: any;
   isUpdateAllowed = false;
   constructor(private route: ActivatedRoute, private router: Router, private token: TokenStorageService,
-  private authservice: AuthService, private loanService: LoanService) {}
+              private authservice: AuthService, private loanService: LoanService) {}
 
   ngOnInit() {
     this.currentUser = this.token.getUser();
@@ -33,15 +33,15 @@ export class LoanDetailsComponent implements OnInit {
     this.isUpdateAllowed = this.authservice.isUserEntitledToModify();
 
   }
-  goBack() {
+  public goBack() {
     this.router.navigateByUrl('/searchLoan');
   }
 
-  updateUser() {
-    this.loanService.updateUser(this.loanUser).subscribe(data => {
+  public updateUser() {
+    this.loanService.updateUser(this.loanUser).subscribe((data) => {
       this.isUpdateSuccess = true;
     },
-      error => {
+      (error) => {
         this.errormessage = error.error.errormessage;
       });
   }

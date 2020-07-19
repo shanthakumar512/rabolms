@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+import { AuthService } from '../../_services/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -20,12 +20,12 @@ export class AddUserComponent implements OnInit {
 
   onSubmit() {
     this.authService.addNewUser(this.form).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
-      err => {
+      (err) => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
       }
@@ -33,6 +33,6 @@ export class AddUserComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigateByUrl('/admin');
+    this.router.navigateByUrl('/user');
   }
 }

@@ -18,10 +18,10 @@ describe('AuthService', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service.login).toBeTruthy();
   });
-  it('should have register function', () => {
+  /* it('should have register function', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service.register).toBeTruthy();
-  });
+  }); */
   it('should have addNewUser function', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service.addNewUser).toBeTruthy();

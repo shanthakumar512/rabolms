@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
 export class BoardAdminComponent implements OnInit {
   content = '';
   closeResult = '';
-  adminUser: any;
-  private roles: string[];
+  adminUser: boolean;
+  roles: Array<string>;
   isLoggedIn = false;
   isAddNewLoan = false;
   animal: string;
   name: string;
+
 
 
   constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
@@ -26,7 +27,7 @@ export class BoardAdminComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-      this.adminUser = this.roles.includes('ROLE_ADMIN');
+      this.roles[0] === 'ROLE_ADMIN' ?  this.adminUser= true :  this.adminUser =false;
     }
   }
 

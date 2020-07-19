@@ -20,18 +20,21 @@ export class LoanSearchComponent implements OnInit {
   isViewDetails = false;
   isAdminRole = false;
   constructor(private authService: AuthService, private loanService: LoanService, private router: Router,
-    private token: TokenStorageService) { }
+              private token: TokenStorageService) { }
   ngOnInit() {
+    console.log(this.token.getUser()); 
+    this.token.getUser();
     this.token.getUser().roles[0] === 'ROLE_ADMIN' ? this.isAdminRole = true : this.isAdminRole = false;
   }
   search() {
+    console.log(this.token.getUser());
     this.loanService.search(this.form).subscribe(
-      data => {
+      (data) => {
         this.isNotUnique = true;
         this.isSearchFailed = false;
         this.loanusers = data;
       },
-      error => {
+      (error) => {
         this.isSearchFailed = true;
         this.isNotUnique = false;
         this.errormessage = error;
@@ -41,15 +44,15 @@ export class LoanSearchComponent implements OnInit {
 
   viewDetails() {
     this.authService.setModificationEntitlement(false);
-    this.router.navigateByUrl('/details', {state: this.loanusers});
+    this.router.navigateByUrl('/details', { state: this.loanusers});
   }
 
   updateDetails() {
     this.authService.setModificationEntitlement(true);
-    this.router.navigateByUrl('/details', {state: this.loanusers});
+    this.router.navigateByUrl('/details', { state: this.loanusers});
   }
 
   goBack() {
-    this.router.navigateByUrl('/admin');
+    this.router.navigateByUrl('/user');
   }
 }

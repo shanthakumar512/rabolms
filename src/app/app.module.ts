@@ -7,10 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardUserComponent } from './board-user/board-user.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
@@ -19,18 +17,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AddUserComponent } from './add-user/add-user.component';
+import { AddUserComponent } from './board-admin/add-user/add-user.component';
 import { LoanSearchComponent } from './loan-search/loan-search.component';
-import { LoanDetailsComponent } from './loan-details/loan-details.component';
+import { LoanDetailsComponent } from './loan-search/loan-details/loan-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
     HomeComponent,
     BoardAdminComponent,
-    BoardUserComponent,
     ProfileComponent,
     AddUserComponent,
     LoanSearchComponent,

@@ -40,4 +40,18 @@ export class LoanService {
     }, httpOptions);
   }
 
+  /* public setLoanUser(LoanUser user): LoanUser{
+    
+    loanUser:LoanUser;
+    loanUser.userFirstname : user.userFirstname,
+    userLastname: user.userLastname,
+    loanNumber: user.loanNumber,
+    addressLine1: user.addressLine1,
+    addressLine2: user.addressLine2,
+    addressLine3: user.addressLine3,
+    city: user.city,
+    state: user.state,
+    country: user.country
+  }
+ */
 }

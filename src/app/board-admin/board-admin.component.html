@@ -1,8 +1,10 @@
-<div class="container" *ngIf="adminUser; else loggedOut">
+<div class="container" *ngIf="isLoggedIn; else loggedOut">
 
   <header class="jumbotron">
+    <div *ngIf="adminUser">
     <p>Please click on originate button to add New Loan information</p>
     <button class="btn btn-info" (click)="openAddUserForm()">Add/Originate New Loan</button>
+  </div>
     <p>Please click on Search Loans button to Search and Modify Existing Loan information</p>
     <div>
       <button type="button" class="btn btn-info" (click)="openSearchForm()">
@@ -14,5 +16,5 @@
 </div>
 
 <ng-template #loggedOut class="alert-danger">
-  You donot have Admin Please login as Admin.
+  Please login!!
 </ng-template>
