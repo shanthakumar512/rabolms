@@ -27,7 +27,7 @@ export class BoardAdminComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-      this.roles[0] === 'ROLE_ADMIN' ?  this.adminUser= true :  this.adminUser =false;
+      this.roles[0] === 'ROLE_ADMIN' ?  this.adminUser = true :  this.adminUser = false;
     }
   }
 

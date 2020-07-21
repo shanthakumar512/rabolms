@@ -1,15 +1,16 @@
-import { async, ComponentFixture, TestBed,inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoanSearchComponent } from './loan-search.component';
 import {FormsModule} from '@angular/forms';
 import { TokenStorageService } from '../_services/token-storage.service';
 import {Router} from '@angular/router';
-import {User,Role} from '../user';
+import {User, Role} from '../user';
 import { Observable, of } from 'rxjs';
-import {LoanUser} from '../loan-user';
- 
 import {LoanService}  from '../_services/loan.service';
+import { PropertyAddress } from '../property-address';
+import { LoanInformation } from '../loan-information';
+import { LoanUserObj } from '../loan-users';
 class RouterMock {
 
   navigateByUrl(url: string) {
@@ -21,41 +22,50 @@ class RouterMock {
   }
 }
 
-class MockTokenStorageService extends TokenStorageService{
+class MockTokenStorageService extends TokenStorageService {
 
  getUser() {
-  const role: Role= {
-    id :4,
-    name:'ROLE_ADMIN'
+  const role: Role = {
+    id : 4,
+    name: 'ROLE_ADMIN'
   };
-  const user:  User= { 
+  const user: User = {
     username: 'admin1',
     email: 'admin1@gmail.com',
-    password:'',
-    roles:role
-  }
+    password: '',
+    roles: role
+  };
   return user;
  }
 }
-class MockLoanService extends LoanService{
+class MockLoanService extends LoanService {
 
-user: LoanUser = {
-    userEmailId: 'abc@gmail',
-    userFirstname: 'abc',
-    userLastname: 'aa',
-    loanNumber: 'aa',
-    addressLine1: 'aaaaaa',
-    addressLine2: 'aa',
-    addressLine3: 'aa',
-    city: 'aa',
-    state: 'aa',
-    country: 'aa'
-}
- search():Observable<LoanUser> {
-  let users: LoanUser;
-  users:this.user;
-  return of(this.user);
- }
+   propertyAddresss: PropertyAddress = {
+    addressLine1 : 'addressLine1',
+    addressLine2 : 'addressLine2',
+    addressLine3 : 'addressLine3',
+    city : 'city',
+    state : 'state',
+    country : 'country'
+  };
+   loanInformation: LoanInformation = {
+    loanNumber: 'ABC123',
+      loanAmount: 13215,
+      loanTerm: 45,
+      loanStatus: 'ACTIVE',
+      loanMgtFees: 4500,
+      originationAccount: 'ABC123',
+      originationDate:  new Date()
+  };
+   loanUserObj: LoanUserObj = {
+
+    userFirstname: 'user1',
+    userLastname : 'user1',
+    userEmail: 'abc@gmail.com',
+    loanInformation: this.loanInformation,
+    propertyAddress: this.propertyAddresss
+
+   };
 }
 describe('LoanSearchComponent', () => {
   let component: LoanSearchComponent;
@@ -63,9 +73,13 @@ describe('LoanSearchComponent', () => {
   let tokenStorageStub: Partial<TokenStorageService>;
 
   beforeEach(async(() => {
+   
+  }));
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ LoanSearchComponent ],
-      providers : [ { provide: TokenStorageService,useClass:MockTokenStorageService} ,
+      providers : [ { provide: TokenStorageService, useClass: MockTokenStorageService} ,
        {provide: Router, useClass: RouterMock}],
       imports : [
         HttpClientTestingModule,
@@ -74,16 +88,13 @@ describe('LoanSearchComponent', () => {
   ],
     })
     .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoanSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create LoanSearchComponent', () => {
-    let tokenService= fixture.debugElement.injector.get(TokenStorageService)
+    const tokenService = fixture.debugElement.injector.get(TokenStorageService);
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });
@@ -101,13 +112,24 @@ describe('LoanSearchComponent', () => {
   }));
 
   it('should create onSubmit() and set isSuccessful as True', () => {
-    let loanservice= fixture.debugElement.injector.get(LoanService);
-    let response :any;
+    const loanservice = fixture.debugElement.injector.get(LoanService);
+    let response: any;
     fixture.detectChanges();
     component.search();
     fixture.detectChanges();
     expect(component.isSearchFailed).toBeFalsy();
   });
+
+  it('should create updateUser() and set isSuccessful as True', () => {
+    const loanservice = fixture.debugElement.injector.get(LoanService);
+    let response: any;
+    spyOn(loanservice, 'updateUser').and.returnValue(of(response));
+    console.log(response);
+    component.updateUser();
+    fixture.detectChanges();
+    expect(component.isUpdateSuccess).toBeTruthy();
+  });
+
 
   describe('#displayForm', () => {
     it('should call Router.navigateByUrl("/user") with the ID of the form', inject([Router], (router: Router) => {
@@ -116,19 +138,20 @@ describe('LoanSearchComponent', () => {
         const url = spy.calls.first().args[0];
         expect(url).toBe('/user');
     }));
+    
+    it('should call viewDetails()', () => {
+      component.goBackToSearch();
+      expect(component.isDisplayDetails).toBeFalsy();
+    });
 
-    it('should call Router.navigateByUrl("/details") with the ID of the form', inject([Router], (router: Router) => {
-      const spy = spyOn(router, 'navigateByUrl');
+    it('should call viewDetails()', () => {
       component.viewDetails();
-      const url = spy.calls.first().args[0];
-      expect(url).toBe('/details');
-  }));
-  it('should call Router.navigateByUrl("/details") with the ID of the form', inject([Router], (router: Router) => {
-    const spy = spyOn(router, 'navigateByUrl');
+      expect(component.isUpdateAllowed).toBeFalsy();
+  });
+    it('should call updateDetails', () => {
     component.updateDetails();
-    const url = spy.calls.first().args[0];
-    expect(url).toBe('/details');
-}));
+    expect(component.isDisplayDetails).toBeTruthy;
+  });
 
 });
 

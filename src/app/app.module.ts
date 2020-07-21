@@ -19,7 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AddUserComponent } from './board-admin/add-user/add-user.component';
 import { LoanSearchComponent } from './loan-search/loan-search.component';
-import { LoanDetailsComponent } from './loan-search/loan-details/loan-details.component';
+// import { LoanDetailsComponent } from './loan-search/loan-details/loan-details.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,7 @@ import { LoanDetailsComponent } from './loan-search/loan-details/loan-details.co
     BoardAdminComponent,
     ProfileComponent,
     AddUserComponent,
-    LoanSearchComponent,
-    LoanDetailsComponent
+    LoanSearchComponent
       ],
   imports: [
     BrowserModule,

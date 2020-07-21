@@ -8,7 +8,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { AuthGuard } from './auth-guard.guard';
 import {AddUserComponent} from './board-admin/add-user/add-user.component';
 import {LoanSearchComponent} from './loan-search/loan-search.component';
-import {LoanDetailsComponent} from './loan-search/loan-details/loan-details.component';
+// import {LoanDetailsComponent} from './loan-search/loan-details/loan-details.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -18,7 +18,6 @@ const routes: Routes = [
   { path: 'login/profile', redirectTo: 'home', pathMatch: 'full' },
   { path: 'adduser', component: AddUserComponent, canActivate: [AuthGuard]},
   { path: 'searchLoan', component: LoanSearchComponent, canActivate: [AuthGuard] },
-  {path: 'details', component: LoanDetailsComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 
 ];

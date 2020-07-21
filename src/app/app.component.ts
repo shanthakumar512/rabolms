@@ -12,23 +12,21 @@ export class AppComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
-  toggleAdminOrUser: string
+  toggleAdminOrUser: string;
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-      this.roles[0] === 'ROLE_ADMIN' ?  this.showAdminBoard= true :  this.showAdminBoard =false;
-      this.showAdminBoard ? this.toggleAdminOrUser = 'Admin': this.toggleAdminOrUser = 'User'
+      this.roles[0] === 'ROLE_ADMIN' ?  this.showAdminBoard = true :  this.showAdminBoard = false;
+      this.showAdminBoard ? this.toggleAdminOrUser = 'Admin' : this.toggleAdminOrUser = 'User';
       this.username = user.username;
     }
   }
 
   logout() {
     this.tokenStorageService.signOut();
-    // window.location.reload();
   }
 }

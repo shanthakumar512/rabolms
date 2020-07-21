@@ -1,4 +1,4 @@
-export interface LoanInformation {
+export class LoanInformation {
     loanNumber: string;
     loanAmount: number;
     loanTerm: number;

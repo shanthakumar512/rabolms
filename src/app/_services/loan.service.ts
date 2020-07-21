@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders , HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {LoanUser} from '../loan-user';
+import { LoanUserObj } from '../loan-users';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
@@ -18,40 +18,22 @@ export class LoanService {
 
   constructor(private http: HttpClient) { }
 
-  search(user): Observable<LoanUser> {
-    return this.http.post<LoanUser>('http://localhost:8081/api/auth/' + 'searchUser', {
+  search(user: LoanUserObj): Observable<LoanUserObj> {
+    return this.http.post<LoanUserObj>('http://localhost:8081/api/auth/' + 'searchUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
-      loanNumber: user.loanNumber
+      loanInformation: user.loanInformation,
     }, httpOptions);
   }
 
-  updateUser(user): Observable<any> {
-    return this.http.put('http://localhost:8081/api/auth/' + 'updateUser', {
+  updateUser(user: LoanUserObj): Observable<LoanUserObj> {
+    return this.http.put<LoanUserObj>('http://localhost:8081/api/auth/' + 'updateUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
-      loanNumber: user.loanNumber,
-      addressLine1: user.addressLine1,
-      addressLine2: user.addressLine2,
-      addressLine3: user.addressLine3,
-      city: user.city,
-      state: user.state,
-      country: user.country
+      userEmail: user.userEmail,
+      loanInformation: user.loanInformation,
+      propertyAddress: user.propertyAddress
     }, httpOptions);
   }
 
-  /* public setLoanUser(LoanUser user): LoanUser{
-    
-    loanUser:LoanUser;
-    loanUser.userFirstname : user.userFirstname,
-    userLastname: user.userLastname,
-    loanNumber: user.loanNumber,
-    addressLine1: user.addressLine1,
-    addressLine2: user.addressLine2,
-    addressLine3: user.addressLine3,
-    city: user.city,
-    state: user.state,
-    country: user.country
-  }
- */
 }

@@ -1,41 +1,41 @@
-import { TestBed, async, fakeAsync } from '@angular/core/testing';
+import { TestBed, async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import  {TokenStorageService} from './_services/token-storage.service';
+import {TokenStorageService} from './_services/token-storage.service';
 import {User, Role} from './user';
+import { Router } from '@angular/router';
 
-class MockTokenStorageService extends TokenStorageService{
+class MockTokenStorageServiceForAdmin extends TokenStorageService {
 
   getUser() {
-   const role: Role= {
-     id :4,
-     name:'ROLE_ADMIN'
+   const role: Role = {
+     id : 4,
+     name: 'ROLE_ADMIN'
    };
-   const user:  User= { 
+   const user: User = {
      username: 'admin1',
      email: 'admin1@gmail.com',
-     password:'',
-     roles:role
-   }
+     password: '',
+     roles: role
+   };
    return user;
   }
-  getToken(){
-    sessionStorage.setItem('auth-token','ad')
-    return sessionStorage.getItem('auth-token');
-  }
+
  }
 
+
+
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      providers:[  { provide: TokenStorageService, useClass:MockTokenStorageService}],
+      providers: [  { provide: TokenStorageService, useClass: MockTokenStorageServiceForAdmin}],
       imports: [
         RouterTestingModule
       ],
       declarations: [
         AppComponent
       ],
-    }).compileComponents(); }));
+    }).compileComponents(); });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -48,15 +48,6 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     return { fixture, app };
   }
-
-  it('should create the app', async(() => {
-    const { app } = setup();
-    expect(app).toBeTruthy();
-  }));
-  it('should logout', async(() => {
-    const { app } = setup();
-    expect(app.logout()).toBeTruthy();
-  }));
 
   it('should have a tag as \'RaboBank Loan Management system!\'', async(() => {
     const { app, fixture } = setup();
@@ -72,7 +63,15 @@ describe('AppComponent', () => {
     const h1tag = compile.querySelector('title');
     expect(h1tag.textContent).toBe('RaboBank Loan Managenement System');
   }));
-  
+
+  it('should call  logout', inject([TokenStorageService], (token: TokenStorageService) => {
+      const { app, fixture } = setup(); 
+      fixture.detectChanges();
+      const spy = spyOn(token, 'signOut');
+      app.logout();
+    expect(spy).toHaveBeenCalled();
+  }));
+
 });
 
 

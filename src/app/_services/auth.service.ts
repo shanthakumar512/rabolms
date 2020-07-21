@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import {TokenStorageService} from './token-storage.service';
+import {LoanUserObj} from '../loan-users';
 
 const AUTH_API = 'http://localhost:8081/api/auth/';
 
@@ -26,27 +27,17 @@ export class AuthService {
     }, httpOptions);
   }
 
-  addNewUser(user): Observable<any> {
+  addNewUser(user: LoanUserObj): Observable<any> {
+
     return this.http.post(AUTH_API + 'addUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
-      loanNumber: user.loanNumber,
-      addressLine1: user.addressLine1,
-      addressLine2: user.addressLine2,
-      addressLine3: user.addressLine3,
-      city: user.city,
-      state: user.state,
-      country: user.country}, httpOptions);
-  }
-
-  /* register(user): Observable<any> {
-    return this.http.post(AUTH_API + 'signup', {
-      username: user.username,
-      email: user.email,
-      password: user.password
+      userEmail: user.userEmail,
+      loanInformation: user.loanInformation,
+      propertyAddress: user.propertyAddress
     }, httpOptions);
   }
- */
+
 
   public isAuthenticated(): boolean {
     return !!this.tokenStorageService.getToken();
