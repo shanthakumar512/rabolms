@@ -107,6 +107,16 @@ describe('BoardAdminComponent', () => {
       expect(url).toBe('/searchLoan');
   }));
 
+  it('should call Router.navigateByUrl("/addLoanInfo") with the ID of the form', inject([Router], (router: Router) => {
+    const spy = spyOn(router, 'navigateByUrl');
+
+    component.openAddLoanInformationForm();
+
+    const url = spy.calls.first().args[0];
+
+    expect(url).toBe('/addLoanInfo');
+}));
+
 });
 
 });

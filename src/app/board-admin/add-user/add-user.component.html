@@ -1,7 +1,9 @@
 <header class="jumbotron">
         
 <div class="col-md-10">
+        <div *ngIf="!isSuccessful">
         <h2> Add the New user details</h2>
+        </div>
     <div class="card card-container">
              
 <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -47,54 +49,7 @@
                 
             </div>
         </div>
-
-        <div> <h4>Loan Information</h4></div>
-        <div class="form-group">
-            <label for="loanNumber">Loan Number</label>
-            <input type="text" class="form-control" name="loanNumber" [(ngModel)]="loanUserObj.loanInformation.loanNumber" required #loanNumber="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && loanNumber.invalid">
-                <div *ngIf="loanNumber.errors.required">Loan Number is required</div>
-            </div>
-        </div>
-   <div class="form-group">
-            <label for="loanAmount">Loan Amount</label>
-            <input type="text" class="form-control" name="loanAmount" [(ngModel)]="loanUserObj.loanInformation.loanAmount" required #loanAmount="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && loanAmount.invalid">
-                <div *ngIf="loanAmount.errors.required">Loan Amount is required</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="loanTerm">Loan Term</label>
-            <input type="text" class="form-control" name="loanTerm" [(ngModel)]="loanUserObj.loanInformation.loanTerm" required #loanTerm="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && loanTerm.invalid">
-                <div *ngIf="loanTerm.errors.required">Loan Term is required</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="loanStatus">Loan Status</label>
-            <input type="text" class="form-control" name="loanStatus" [(ngModel)]="loanUserObj.loanInformation.loanStatus" required #loanStatus="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && loanStatus.invalid">
-                <div *ngIf="loanStatus.errors.required">Loan Status is required</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="loanMgtFees">Loan Management Fees</label>
-            <input type="text" class="form-control" name="loanMgtFees" [(ngModel)]="loanUserObj.loanInformation.loanMgtFees" required #loanMgtFees="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && loanMgtFees.invalid">
-                <div *ngIf="loanMgtFees.errors.required">Loan Management Fees is required</div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="originationAccount">Loan Origination Account</label>
-            <input type="text" class="form-control" name="originationAccount" [(ngModel)]="loanUserObj.loanInformation.originationAccount" required #originationAccount="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && originationAccount.invalid">
-                <div *ngIf="originationAccount.errors.required">Loan origination Account  is required</div>
-            </div>
-        </div>
-        
+       
         <div> <h4>Property Address</h4></div>
         
         <div class="form-group">
@@ -180,7 +135,6 @@
                             </div>
                         </div>
     
-
         <div class="form-group">
             <button class="btn btn-primary ">Add User</button>
         </div>
@@ -192,10 +146,27 @@
         </form>
 
         <div class="alert alert-success" *ngIf="isSuccessful">
-            New Loan entry is Successful!!
-
-            
+            New Loan entry is Successful!!  
         </div>
+        <div *ngIf="isSuccessful">
+            <h3>List of Users</h3>
+             <table class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th>User Firstname</th>
+                            <th>User Lastname</th>
+                            <th>User Email</th>
+                          </tr>
+                        </thead>
+                             <tr *ngFor ="let loanuser Of loanUsersObj" >
+                                <td>{{loanuser.userFirstname}}</td>
+                                <td>{{loanuser.userLastname}}</td>
+                                <td>{{loanuser.userEmail}}</td>
+                              </tr>
+                        <tbody>
+                </table>
+
+</div>
         <div class="text-right mb-8">
         <button class="btn btn-primary" (click)="goBack()">Back to Admin</button>
         </div>

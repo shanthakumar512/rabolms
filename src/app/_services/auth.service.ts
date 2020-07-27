@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import {TokenStorageService} from './token-storage.service';
 import {LoanUserObj} from '../loan-users';
 
-const AUTH_API = 'http://localhost:8081/api/auth/';
+const AUTH_API = 'http://localhost:8765/api/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,11 +28,10 @@ export class AuthService {
 
   addNewUser(user: LoanUserObj): Observable<any> {
 
-    return this.http.post(AUTH_API + 'addUser', {
+    return this.http.post('http://localhost:8765/api/loanUser/addLoanUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       userEmail: user.userEmail,
-      loanInformation: user.loanInformation,
       propertyAddress: user.propertyAddress
     }, httpOptions);
   }
@@ -50,5 +48,4 @@ export class AuthService {
   public setModificationEntitlement( isEntitledToModify ) {
     this.isEntitledToModify = isEntitledToModify;
   }
-
 }

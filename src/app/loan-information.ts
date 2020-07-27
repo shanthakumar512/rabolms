@@ -1,4 +1,5 @@
 export class LoanInformation {
+    loanUserEmail: string;
     loanNumber: string;
     loanAmount: number;
     loanTerm: number;

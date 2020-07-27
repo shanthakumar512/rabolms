@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AddUserComponent } from './add-user.component';
+import { AddLoanInformationComponent } from './add-loan-information.component';
 import { FormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 import { LoanUserObj } from '../../loan-users';
 import { PropertyAddress } from '../../property-address';
 import { LoanInformation } from '../../loan-information';
+import { LoanService } from '../../_services/loan.service';
 // import {LoanUser} from '../../loan-user';
 const propertyAddresss: PropertyAddress = {
   addressLine1 : 'addressLine1',
@@ -19,7 +20,7 @@ const propertyAddresss: PropertyAddress = {
   country : 'country'
 };
 const loanInformation: LoanInformation = {
-  loanUserEmail: '',
+    loanUserEmail: 'abc@gmail.com',
     loanNumber: 'ABC123',
     loanAmount: 13215,
     loanTerm: 45,
@@ -49,12 +50,12 @@ login(credentials): Observable<string> {
 
 
 describe('AddUserComponent', () => {
-  let component: AddUserComponent;
-  let fixture: ComponentFixture<AddUserComponent>;
+  let component: AddLoanInformationComponent;
+  let fixture: ComponentFixture<AddLoanInformationComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddUserComponent],
+      declarations: [AddLoanInformationComponent],
       providers : [ { provide: AuthService, useClass: MockAuthService} ],
       imports: [
         HttpClientTestingModule,
@@ -64,7 +65,7 @@ describe('AddUserComponent', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(AddUserComponent);
+    fixture = TestBed.createComponent(AddLoanInformationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -74,9 +75,9 @@ describe('AddUserComponent', () => {
   });
 
   it('should create onSubmit() and set isSuccessful as True', () => {
-    const authservice = fixture.debugElement.injector.get(AuthService);
+    const loanService = fixture.debugElement.injector.get(LoanService);
     const response = '';
-    spyOn(authservice, 'addNewUser').and.returnValue(of(response));
+    spyOn(loanService, 'addNewLoan').and.returnValue(of(response));
     component.onSubmit();
     fixture.detectChanges();
     expect(component.isSuccessful).toBeTruthy();

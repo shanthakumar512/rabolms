@@ -6,7 +6,6 @@ export class LoanUserObj {
     userFirstname: string;
     userLastname: string;
     userEmail: string;
-    loanInformation: LoanInformation;
     propertyAddress: PropertyAddress;
 }
 

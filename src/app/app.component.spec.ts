@@ -65,11 +65,11 @@ describe('AppComponent', () => {
   }));
 
   it('should call  logout', inject([TokenStorageService], (token: TokenStorageService) => {
-      const { app, fixture } = setup(); 
+      const { app, fixture } = setup();
       fixture.detectChanges();
       const spy = spyOn(token, 'signOut');
       app.logout();
-    expect(spy).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalled();
   }));
 
 });

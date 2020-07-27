@@ -8,6 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
+
+
+
+  constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
   content = '';
   closeResult = '';
   adminUser: boolean;
@@ -16,10 +20,7 @@ export class BoardAdminComponent implements OnInit {
   isAddNewLoan = false;
   animal: string;
   name: string;
-
-
-
-  constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
+y;
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -30,10 +31,14 @@ export class BoardAdminComponent implements OnInit {
       this.roles[0] === 'ROLE_ADMIN' ?  this.adminUser = true :  this.adminUser = false;
     }
   }
-
   openAddUserForm() {
     this.router.navigateByUrl('/adduser');
   }
+
+  openAddLoanInformationForm() {
+    this.router.navigateByUrl('/addLoanInfo');
+  }
+
   openSearchForm() {
     this.router.navigateByUrl('/searchLoan');
   }

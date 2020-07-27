@@ -31,6 +31,7 @@ describe('TokenStorageService', () => {
   });
   it('should have signOut method', () => {
     const service: TokenStorageService = TestBed.get(TokenStorageService);
+    service.signOut();
     expect(service.signOut).toBeTruthy();
   });
 });

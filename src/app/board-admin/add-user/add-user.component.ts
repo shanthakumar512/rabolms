@@ -15,24 +15,24 @@ export class AddUserComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  loanInformation: LoanInformation;
   loanUserObj: LoanUserObj;
+  loanUsersObj: Array<LoanUserObj>;
   propertyAddress: PropertyAddress;
 
   constructor(private authService: AuthService, private router: Router) {
     this.loanUserObj = new LoanUserObj();
     this.loanUserObj.propertyAddress = new PropertyAddress();
-    this.loanUserObj.loanInformation = new LoanInformation();
    }
 
   ngOnInit() {
 
   }
 
+
   onSubmit() {
     this.authService.addNewUser(this.loanUserObj).subscribe(
       (data) => {
-        console.log(data);
+        this.loanUsersObj = data;
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },

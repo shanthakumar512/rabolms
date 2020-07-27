@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders , HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoanUserObj } from '../loan-users';
+import { LoanInformation } from '../loan-information';
+import { SearchCriteria } from '../search-criteria';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT'
-})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
 
@@ -18,21 +17,48 @@ export class LoanService {
 
   constructor(private http: HttpClient) { }
 
-  search(user: LoanUserObj): Observable<LoanUserObj> {
-    return this.http.post<LoanUserObj>('http://localhost:8081/api/auth/' + 'searchUser', {
-      userFirstname: user.userFirstname,
-      userLastname: user.userLastname,
-      loanInformation: user.loanInformation,
+  search(searchCriteria: SearchCriteria): Observable<any> {
+    return this.http.post<LoanInformation>('http://localhost:8765/api/searchinfo/loanInformation' , {
+      userFirstname: searchCriteria.userFirstname,
+      userLastname: searchCriteria.userLastname,
+      loanNumber : searchCriteria.loanNumber
     }, httpOptions);
   }
 
-  updateUser(user: LoanUserObj): Observable<LoanUserObj> {
+  /* updateUser(user: LoanUserObj): Observable<any> {
     return this.http.put<LoanUserObj>('http://localhost:8081/api/auth/' + 'updateUser', {
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       userEmail: user.userEmail,
-      loanInformation: user.loanInformation,
       propertyAddress: user.propertyAddress
+    }, httpOptions);
+  } */
+
+  addNewLoan(loanInfo: LoanInformation): Observable<any> {
+
+    return this.http.post<string>('http://localhost:8765/api/loanInfo/addLoanInfo', {
+      loanUserEmail: loanInfo.loanUserEmail,
+      loanNumber: loanInfo.loanNumber,
+      loanAmount: loanInfo.loanAmount,
+      loanTerm: loanInfo.loanTerm,
+      loanStatus: loanInfo.loanStatus,
+      loanMgtFees: loanInfo.loanMgtFees,
+      originationAccount: loanInfo.originationAccount,
+      originationDate: loanInfo.originationDate,
+    }, httpOptions);
+  }
+
+  updateLoan(loanInfo: LoanInformation): Observable<any> {
+
+    return this.http.post('http://localhost:8765/api/loanInfo/updateLoanInfo', {
+      loanUserEmail: loanInfo.loanUserEmail,
+      loanNumber: loanInfo.loanNumber,
+      loanAmount: loanInfo.loanAmount,
+      loanTerm: loanInfo.loanTerm,
+      loanStatus: loanInfo.loanStatus,
+      loanMgtFees: loanInfo.loanMgtFees,
+      originationAccount: loanInfo.originationAccount,
+      originationDate: loanInfo.originationDate,
     }, httpOptions);
   }
 

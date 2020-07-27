@@ -7,10 +7,11 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import {Router} from '@angular/router';
 import {User, Role} from '../user';
 import { Observable, of } from 'rxjs';
-import {LoanService}  from '../_services/loan.service';
+import {LoanService} from '../_services/loan.service';
 import { PropertyAddress } from '../property-address';
 import { LoanInformation } from '../loan-information';
 import { LoanUserObj } from '../loan-users';
+import { SearchCriteria } from '../search-criteria';
 class RouterMock {
 
   navigateByUrl(url: string) {
@@ -49,6 +50,7 @@ class MockLoanService extends LoanService {
     country : 'country'
   };
    loanInformation: LoanInformation = {
+    loanUserEmail: 'abc@yahoo.com',
     loanNumber: 'ABC123',
       loanAmount: 13215,
       loanTerm: 45,
@@ -62,7 +64,6 @@ class MockLoanService extends LoanService {
     userFirstname: 'user1',
     userLastname : 'user1',
     userEmail: 'abc@gmail.com',
-    loanInformation: this.loanInformation,
     propertyAddress: this.propertyAddresss
 
    };
@@ -70,17 +71,13 @@ class MockLoanService extends LoanService {
 describe('LoanSearchComponent', () => {
   let component: LoanSearchComponent;
   let fixture: ComponentFixture<LoanSearchComponent>;
-  let tokenStorageStub: Partial<TokenStorageService>;
-
-  beforeEach(async(() => {
-   
-  }));
-
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ LoanSearchComponent ],
       providers : [ { provide: TokenStorageService, useClass: MockTokenStorageService} ,
-       {provide: Router, useClass: RouterMock}],
+       {provide: Router, useClass: RouterMock},
+      {provide: LoanService, useClass: MockLoanService }],
       imports : [
         HttpClientTestingModule,
          FormsModule,
@@ -91,6 +88,38 @@ describe('LoanSearchComponent', () => {
     fixture = TestBed.createComponent(LoanSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    const loanInformation1 : LoanInformation = {
+      loanUserEmail: 'abc@yahoo.com',
+      loanNumber: 'ABC123',
+        loanAmount: 13215,
+        loanTerm: 45,
+        loanStatus: 'ACTIVE',
+        loanMgtFees: 4500,
+        originationAccount: 'ABC123',
+        originationDate:  new Date()
+    };
+   const  loanInformation2: LoanInformation = {
+      loanUserEmail: 'abc@yahoo.com',
+      loanNumber: 'ABC123',
+        loanAmount: 13215,
+        loanTerm: 45,
+        loanStatus: 'ACTIVE',
+        loanMgtFees: 4500,
+        originationAccount: 'ABC123',
+        originationDate:  new Date()
+    };
+  
+    const loanInfoList= Array<LoanInformation>();
+    loanInfoList.push(loanInformation1);
+    loanInfoList.push(loanInformation2);
+    let loanInformationList=loanInfoList; 
+    fixture.detectChanges();
+    component.ngOnInit();
+    
+    component.loanInformationList=loanInformationList;
+  
+    fixture.detectChanges();
+
   });
 
   it('should create LoanSearchComponent', () => {
@@ -112,20 +141,26 @@ describe('LoanSearchComponent', () => {
   }));
 
   it('should create onSubmit() and set isSuccessful as True', () => {
+   const searchCriteria: SearchCriteria ={
+      userFirstname :'user1',
+      userLastname: '',
+      loanNumber: ''
+      }
     const loanservice = fixture.debugElement.injector.get(LoanService);
-    let response: any;
-    fixture.detectChanges();
+    const response = '';
+    spyOn(loanservice, 'search').and.returnValue(of(response));
+    fixture.detectChanges()
     component.search();
     fixture.detectChanges();
+    expect(component.isNotUnique).toBeTruthy();
     expect(component.isSearchFailed).toBeFalsy();
   });
 
-  it('should create updateUser() and set isSuccessful as True', () => {
+  it('should create updateLoan() and set isSuccessful as True', () => {
     const loanservice = fixture.debugElement.injector.get(LoanService);
-    let response: any;
-    spyOn(loanservice, 'updateUser').and.returnValue(of(response));
-    console.log(response);
-    component.updateUser();
+    const response = '';
+    spyOn(loanservice, 'updateLoan').and.returnValue(of(response));
+    component.updateLoan();
     fixture.detectChanges();
     expect(component.isUpdateSuccess).toBeTruthy();
   });
@@ -138,19 +173,21 @@ describe('LoanSearchComponent', () => {
         const url = spy.calls.first().args[0];
         expect(url).toBe('/user');
     }));
-    
+
     it('should call viewDetails()', () => {
       component.goBackToSearch();
       expect(component.isDisplayDetails).toBeFalsy();
     });
 
     it('should call viewDetails()', () => {
-      component.viewDetails();
+      const index=0;
+      component.viewDetails(index);
       expect(component.isUpdateAllowed).toBeFalsy();
   });
     it('should call updateDetails', () => {
-    component.updateDetails();
-    expect(component.isDisplayDetails).toBeTruthy;
+    const index=0;
+    component.updateDetails(index);
+    expect(component.isDisplayDetails).toBeTruthy();
   });
 
 });

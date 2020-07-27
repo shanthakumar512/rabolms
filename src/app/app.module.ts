@@ -20,6 +20,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AddUserComponent } from './board-admin/add-user/add-user.component';
 import { LoanSearchComponent } from './loan-search/loan-search.component';
 // import { LoanDetailsComponent } from './loan-search/loan-details/loan-details.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { AddLoanInformationComponent } from './board-admin/add-loan-information/add-loan-information.component';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { LoanSearchComponent } from './loan-search/loan-search.component';
     BoardAdminComponent,
     ProfileComponent,
     AddUserComponent,
-    LoanSearchComponent
+    LoanSearchComponent,
+    AddLoanInformationComponent
       ],
   imports: [
     BrowserModule,
@@ -41,10 +45,13 @@ import { LoanSearchComponent } from './loan-search/loan-search.component';
      MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AgGridModule.withComponents([])
   ],
   entryComponents: [],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent]
 
 })

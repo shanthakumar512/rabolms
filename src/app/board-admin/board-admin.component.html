@@ -2,9 +2,15 @@
 
   <header class="jumbotron">
     <div *ngIf="adminUser">
-    <p>Please click on originate button to add New Loan information</p>
-    <button class="btn btn-info" (click)="openAddUserForm()">Add/Originate New Loan</button>
+    <p>Please click on Add User Info to add New User information</p>
+    <button class="btn btn-info" (click)="openAddUserForm()">Add User Info</button>
   </div>
+
+  <div *ngIf="adminUser">
+    <p>Please click on Add Loan Info button to add New Loan information</p>
+    <button class="btn btn-info" (click)="openAddLoanInformationForm()">Add Loan Info</button>
+  </div>
+
     <p>Please click on Search Loans button to Search and Modify Existing Loan information</p>
     <div>
       <button type="button" class="btn btn-info" (click)="openSearchForm()">
