@@ -1,103 +1,117 @@
-<header class="jumbotron">
-        
+<!-- <header class="jumbotron"> -->
+<div class="row">
     <div class="col-md-10">
-            <div *ngIf="!isSuccessful">
+        <div *ngIf="!isSuccessful">
             <h2> Add the New Loan Information</h2>
-            </div>
-        <div class="card card-container">
-                 
-    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-        <div class="form-group">
-            <label for="loanUserEmail">User Email</label>
-            <input type="text" class="form-control" name="loanUserEmail" [(ngModel)]="loanInformation.loanUserEmail" required email minlength="1"
-                #loanUserEmail="ngModel" />
-            <div class="alert-danger" *ngIf="f.submitted && loanUserEmail.invalid">
-                <div *ngIf="loanUserEmail.errors.required">Email is required</div>
-                <div *ngIf="loanUserEmail.errors.minlength">
-                    Email must be at least 1 characters
-                </div>
-                
-            </div>
         </div>
-        <div class="form-group">
-                <label for="loanNumber">Loan Number</label>
-                <input type="text" class="form-control" name="loanNumber" [(ngModel)]="loanInformation.loanNumber" required #loanNumber="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && loanNumber.invalid">
-                    <div *ngIf="loanNumber.errors.required">Loan Number is required</div>
+        <!-- <div class="card card-container"> -->
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="loanUserEmail" class="control-label" >User Email</label>
+                        <input type="text" class="form-control" name="loanUserEmail" [(ngModel)]="loanInformation.loanUserEmail" required email minlength="1"
+                            #loanUserEmail="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && loanUserEmail.invalid">
+                            <div *ngIf="loanUserEmail.errors.required">Email is required</div>
+                            <div *ngIf="loanUserEmail.errors.minlength">
+                                Email must be at least 1 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="loanNumber">Loan Number</label>
+                    <input type="text" class="form-control" name="loanNumber" [(ngModel)]="loanInformation.loanNumber" required #loanNumber="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="f.submitted && loanNumber.invalid">
+                        <div *ngIf="loanNumber.errors.required">Loan Number is required</div>
+                    </div>
                 </div>
             </div>
-       <div class="form-group">
-                <label for="loanAmount">Loan Amount</label>
-                <input type="text" class="form-control" name="loanAmount" [(ngModel)]="loanInformation.loanAmount" required #loanAmount="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && loanAmount.invalid">
-                    <div *ngIf="loanAmount.errors.required">Loan Amount is required</div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="loanAmount">Loan Amount</label>
+                    <input type="text" class="form-control" name="loanAmount" [(ngModel)]="loanInformation.loanAmount" required #loanAmount="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="f.submitted && loanAmount.invalid">
+                        <div *ngIf="loanAmount.errors.required">Loan Amount is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loanTerm">Loan Term</label>
+                    <input type="text" class="form-control" name="loanTerm" [(ngModel)]="loanInformation.loanTerm" required #loanTerm="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="f.submitted && loanTerm.invalid">
+                        <div *ngIf="loanTerm.errors.required">Loan Term is required</div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="loanTerm">Loan Term</label>
-                <input type="text" class="form-control" name="loanTerm" [(ngModel)]="loanInformation.loanTerm" required #loanTerm="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && loanTerm.invalid">
-                    <div *ngIf="loanTerm.errors.required">Loan Term is required</div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="loanStatus">Loan Status</label>
+                    <input type="text" class="form-control" name="loanStatus" [(ngModel)]="loanInformation.loanStatus" required #loanStatus="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="f.submitted && loanStatus.invalid">
+                        <div *ngIf="loanStatus.errors.required">Loan Status is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="loanMgtFees">Loan Management Fees</label>
+                    <input type="text" class="form-control" name="loanMgtFees" [(ngModel)]="loanInformation.loanMgtFees" required #loanMgtFees="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="f.submitted && loanMgtFees.invalid">
+                        <div *ngIf="loanMgtFees.errors.required">Loan Management Fees is required</div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                <label for="loanStatus">Loan Status</label>
-                <input type="text" class="form-control" name="loanStatus" [(ngModel)]="loanInformation.loanStatus" required #loanStatus="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && loanStatus.invalid">
-                    <div *ngIf="loanStatus.errors.required">Loan Status is required</div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="originationAccount">Loan Origination Account</label>
+                    <input type="text" class="form-control" name="originationAccount" [(ngModel)]="loanInformation.originationAccount" required
+                        #originationAccount="ngModel" />
+                    <div class="alert-danger" *ngIf="f.submitted && originationAccount.invalid">
+                        <div *ngIf="originationAccount.errors.required">Loan origination Account is required</div>
+                    </div>
                 </div>
             </div>
-    
-            <div class="form-group">
-                <label for="loanMgtFees">Loan Management Fees</label>
-                <input type="text" class="form-control" name="loanMgtFees" [(ngModel)]="loanInformation.loanMgtFees" required #loanMgtFees="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && loanMgtFees.invalid">
-                    <div *ngIf="loanMgtFees.errors.required">Loan Management Fees is required</div>
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <label for="originationAccount">Loan Origination Account</label>
-                <input type="text" class="form-control" name="originationAccount" [(ngModel)]="loanInformation.originationAccount" required #originationAccount="ngModel" />
-                <div class="alert-danger" *ngIf="f.submitted && originationAccount.invalid">
-                    <div *ngIf="originationAccount.errors.required">Loan origination Account  is required</div>
-                </div>
-            </div>
-                    
             <div class="form-group">
                 <button class="btn btn-primary ">Add Loan Info</button>
             </div>
-    
+
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
                 Adding New Loan failed!
                 <br />{{ errorMessage }}
             </div>
-            </form>
-    
-            <div class="alert alert-success" *ngIf="isSuccessful">
-                New Loan entry is Successful!!  
-            </div>
-            <div *ngIf="isSuccessful">
-                <h3>List of Loans for the User</h3>
-                 <table class="table table-striped table-bordered">
-                            <thead>
-                              <tr>
-                                <th>Loan User Email</th>
-                                <th>Loan Number</th>
-                                <th>Loan Status</th>
-                              </tr>
-                            </thead>
-                                 <tr *ngFor ="let loanInformation Of loanInformationList" >
-                                    <td>{{loanInformation.loanUserEmail}}</td>
-                                    <td>{{loanInformation.loanNumber}}</td>
-                                    <td>{{loanInformation.loanStatus}}</td>
-                                  </tr>
-                            <tbody>
-                    </table>   
-           </div>
-            <div class="text-right mb-8">
-            <button class="btn btn-primary" (click)="goBack()">Back to Admin</button>
-            </div>
+        </form>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            New Loan entry is Successful!!
         </div>
+        <div *ngIf="isSuccessful">
+            <h3>List of Loans for the User</h3>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Loan User Email</th>
+                        <th>Loan Number</th>
+                        <th>Loan Status</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let loanInformation Of loanInformationList">
+                    <td>{{loanInformation.loanUserEmail}}</td>
+                    <td>{{loanInformation.loanNumber}}</td>
+                    <td>{{loanInformation.loanStatus}}</td>
+                </tr>
+                <tbody>
+            </table>
+        </div>
+        <div class="text-right mb-8">
+            <button class="btn btn-primary" (click)="goBack()">Back to Admin</button>
+        </div>
+        <!-- </div> -->
     </div>
+</div>

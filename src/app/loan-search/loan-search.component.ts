@@ -66,7 +66,7 @@ export class LoanSearchComponent implements OnInit {
     this.isUpdateAllowed = true;
   }
 
-  setLoanInfoTobeUpdated(index: number){
+  setLoanInfoTobeUpdated(index: number) {
     this.loanInformation = this.loanInformationList[index];
   }
 
@@ -82,7 +82,7 @@ export class LoanSearchComponent implements OnInit {
   public updateLoan() {
     this.loanService.updateLoan(this.loanInformation).subscribe((data) => {
       this.isUpdateSuccess = true;
-      this.loanInformation=data;
+      this.loanInformation = data;
     },
       (error) => {
         this.errormessage = error.error.errormessage;

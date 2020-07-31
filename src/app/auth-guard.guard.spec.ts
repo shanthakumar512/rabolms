@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AuthGuard } from './auth-guard.guard';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from './_services/auth.service';
-import { Observable, of } from 'rxjs';import {JwtHelperService} from '@auth0/angular-jwt';
+import { Observable, of } from 'rxjs'; import {JwtHelperService} from '@auth0/angular-jwt';
 import { TokenStorageService } from './_services/token-storage.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Role, User } from './user';
@@ -46,7 +46,7 @@ class MockAuthService extends AuthService {
    }
 
   }
-  class MockTokenStorageService extends TokenStorageService {
+class MockTokenStorageService extends TokenStorageService {
 
     getUser() {
      const role: Role = {
@@ -62,23 +62,23 @@ class MockAuthService extends AuthService {
      return user;
     }
 
-    getToken(){
+    getToken() {
       return sessionStorage.getItem('auth-token');
     }
    }
-  
+
 
 describe('AuthGuardGuard', () => {
 
   let authGuard: AuthGuard;
   const routerMock = jasmine.createSpyObj('Router', ['navigate']);
   const authMock = jasmine.createSpyObj('MockAuthService', ['isAuthenticated']);
-  const tokenMock = jasmine.createSpyObj('TokenStorageService',['getToken'])
-  const jwtHelper = jasmine.createSpyObj('JwtHelperService',['isTokenExpired'])
-  
+  const tokenMock = jasmine.createSpyObj('TokenStorageService', ['getToken']);
+  const jwtHelper = jasmine.createSpyObj('JwtHelperService', ['isTokenExpired']);
+
   // const jwtHelper= jasmine.createSpyObj('')
   beforeEach(() => {
-    authGuard = new AuthGuard(authMock, routerMock,jwtHelper,tokenMock);
+    authGuard = new AuthGuard(authMock, routerMock, jwtHelper, tokenMock);
   });
 
   it('should be createable', () => expect(authGuard).toBeTruthy());

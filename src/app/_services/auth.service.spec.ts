@@ -51,37 +51,36 @@ describe('AuthService', () => {
   });
 
   it('should be created', () => {
-    const service: AuthService = TestBed.get(AuthService);
-    expect(service).toBeTruthy();
+    const authService: AuthService = TestBed.get(AuthService);
+    expect(authService).toBeTruthy();
   });
 
   it('should have login function', () => {
-    const service: AuthService = TestBed.get(AuthService);
-    expect(service.login).toBeTruthy();
+    const authservice: AuthService = TestBed.get(AuthService);
+    expect(authservice.login).toBeTruthy();
   });
   it('should have addNewUser function', () => {
-    const service: AuthService = TestBed.get(AuthService);
-    expect(service.addNewUser).toBeTruthy();
+    const authenservice: AuthService = TestBed.get(AuthService);
+    expect(authenservice.addNewUser).toBeTruthy();
   });
   it('should have addNewUser function', () => {
-    const service: AuthService = TestBed.get(AuthService);
-    tokenService=  TestBed.get(TokenStorageService);
+    const authenticationservice: AuthService = TestBed.get(AuthService);
+    tokenService =  TestBed.get(TokenStorageService);
     tokenService.saveToken('token');
-    service.isAuthenticated();
-    service.setModificationEntitlement(true);
-    service.isEntitledToModify;
-    expect(service.isEntitledToModify).toBeTruthy();
-    expect(service.isAuthenticated()).toBeTruthy();
+    authenticationservice.isAuthenticated();
+    authenticationservice.setModificationEntitlement(true);
+    expect(authenticationservice.isEntitledToModify).toBeTruthy();
+    expect(authenticationservice.isAuthenticated()).toBeTruthy();
   });
   it('should have setModificationEntitlement function', () => {
-    const service: AuthService = TestBed.get(AuthService);
-    service.setModificationEntitlement(true);
-    expect(service.isUserEntitledToModify).toBeTruthy();
+    const services: AuthService = TestBed.get(AuthService);
+    services.setModificationEntitlement(true);
+    expect(services.isUserEntitledToModify).toBeTruthy();
   });
   it('should have setModificationEntitlement function', () => {
-    const service: AuthService = TestBed.get(AuthService);
-    service.setModificationEntitlement(false);
-    expect(service.setModificationEntitlement).toBeTruthy();
+    const servic: AuthService = TestBed.get(AuthService);
+    servic.setModificationEntitlement(false);
+    expect(servic.setModificationEntitlement).toBeTruthy();
   });
 
   describe('#getUsers', () => {
@@ -97,19 +96,19 @@ describe('AuthService', () => {
         password: '',
         roles: role
       };
-      service.login(user).subscribe(users => {
+      service.login(user).subscribe((users) => {
         expect(users).toEqual(user);
       });
-  
+
       const req = httpMock.expectOne(`http://localhost:8765/api/auth/signin`);
-      expect(req.request.method).toBe("POST");
+      expect(req.request.method).toBe('POST');
       req.flush(user);
     });
   });
 
   describe('#getUsers', () => {
     it('should return an Observable<LoanInformation[]>', () => {
-      
+
       const propertyAddresss: PropertyAddress = {
         addressLine1 : 'addressLine1',
         addressLine2 : 'addressLine2',
@@ -125,12 +124,12 @@ describe('AuthService', () => {
         userEmail: 'abc@gmail.com',
         propertyAddress: propertyAddresss,
        };
-      service.addNewUser(loanUserObj).subscribe(users => {
+      service.addNewUser(loanUserObj).subscribe((users) => {
         expect(users).toEqual(loanUserObj);
       });
-  
+
       const req = httpMock.expectOne(`http://localhost:8765/api/loanUser/addLoanUser`);
-      expect(req.request.method).toBe("POST");
+      expect(req.request.method).toBe('POST');
       req.flush(loanUserObj);
     });
   });

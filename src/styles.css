@@ -6,7 +6,8 @@ html, body {
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color:rgb(204, 219, 214)
+    /* background-image: url(./assets/gradient.jpg); */
+
 }
 
 .ng-valid[required], .ng-valid.required  {
@@ -16,5 +17,13 @@ body {
   .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
   }
+  
+  
+  footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+}
 
   

@@ -71,7 +71,7 @@ class MockLoanService extends LoanService {
 describe('LoanSearchComponent', () => {
   let component: LoanSearchComponent;
   let fixture: ComponentFixture<LoanSearchComponent>;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ LoanSearchComponent ],
@@ -88,7 +88,7 @@ describe('LoanSearchComponent', () => {
     fixture = TestBed.createComponent(LoanSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    const loanInformation1 : LoanInformation = {
+    const loanInformation1: LoanInformation = {
       loanUserEmail: 'abc@yahoo.com',
       loanNumber: 'ABC123',
         loanAmount: 13215,
@@ -98,7 +98,7 @@ describe('LoanSearchComponent', () => {
         originationAccount: 'ABC123',
         originationDate:  new Date()
     };
-   const  loanInformation2: LoanInformation = {
+    const  loanInformation2: LoanInformation = {
       loanUserEmail: 'abc@yahoo.com',
       loanNumber: 'ABC123',
         loanAmount: 13215,
@@ -108,16 +108,16 @@ describe('LoanSearchComponent', () => {
         originationAccount: 'ABC123',
         originationDate:  new Date()
     };
-  
-    const loanInfoList= Array<LoanInformation>();
+
+    const loanInfoList = Array<LoanInformation>();
     loanInfoList.push(loanInformation1);
     loanInfoList.push(loanInformation2);
-    let loanInformationList=loanInfoList; 
+    const loanInformationList = loanInfoList;
     fixture.detectChanges();
     component.ngOnInit();
-    
-    component.loanInformationList=loanInformationList;
-  
+
+    component.loanInformationList = loanInformationList;
+
     fixture.detectChanges();
 
   });
@@ -141,19 +141,19 @@ describe('LoanSearchComponent', () => {
   }));
 
   it('should create onSubmit() and set isSuccessful as True', () => {
-   const searchCriteria: SearchCriteria ={
-      userFirstname :'user1',
+   const searchCriteria: SearchCriteria = {
+      userFirstname : 'user1',
       userLastname: '',
       loanNumber: ''
-      }
-    const loanservice = fixture.debugElement.injector.get(LoanService);
-    const response = '';
-    spyOn(loanservice, 'search').and.returnValue(of(response));
-    fixture.detectChanges()
-    component.search();
-    fixture.detectChanges();
-    expect(component.isNotUnique).toBeTruthy();
-    expect(component.isSearchFailed).toBeFalsy();
+      };
+   const loanservice = fixture.debugElement.injector.get(LoanService);
+   const response = '';
+   spyOn(loanservice, 'search').and.returnValue(of(response));
+   fixture.detectChanges();
+   component.search();
+   fixture.detectChanges();
+   expect(component.isNotUnique).toBeTruthy();
+   expect(component.isSearchFailed).toBeFalsy();
   });
 
   it('should create updateLoan() and set isSuccessful as True', () => {
@@ -180,12 +180,12 @@ describe('LoanSearchComponent', () => {
     });
 
     it('should call viewDetails()', () => {
-      const index=0;
+      const index = 0;
       component.viewDetails(index);
       expect(component.isUpdateAllowed).toBeFalsy();
   });
     it('should call updateDetails', () => {
-    const index=0;
+    const index = 0;
     component.updateDetails(index);
     expect(component.isDisplayDetails).toBeTruthy();
   });

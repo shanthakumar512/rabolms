@@ -1,4 +1,4 @@
-import { TestBed,getTestBed } from '@angular/core/testing';
+import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoanService } from './loan.service';
@@ -24,17 +24,17 @@ describe('LoanService', () => {
   });
 
   it('should be created', () => {
-    const service: LoanService = TestBed.get(LoanService);
-    expect(service).toBeTruthy();
+    const services: LoanService = TestBed.get(LoanService);
+    expect(services).toBeTruthy();
   });
   it('should  have search method', () => {
-    const service: LoanService = TestBed.get(LoanService);
-    expect(service.search).toBeTruthy();
+    const loanservice: LoanService = TestBed.get(LoanService);
+    expect(loanservice.search).toBeTruthy();
   });
 
   describe('#getUsers', () => {
     it('should return an Observable<LoanInformation[]>', () => {
-      
+
       const loanInformation: LoanInformation = {
         loanUserEmail: '',
         loanNumber: 'ABC123',
@@ -45,20 +45,20 @@ describe('LoanService', () => {
         originationAccount: 'ABC123',
         originationDate:  new Date()
     };
-  
-      service.addNewLoan(loanInformation).subscribe(users => {
+
+      service.addNewLoan(loanInformation).subscribe((users) => {
         expect(users).toEqual(loanInformation);
       });
-  
+
       const req = httpMock.expectOne(`http://localhost:8765/api/loanInfo/addLoanInfo`);
-      expect(req.request.method).toBe("POST");
+      expect(req.request.method).toBe('POST');
       req.flush(loanInformation);
     });
   });
 
   describe('#updateLoan', () => {
     it('should return an Observable<LoanInformation[]>', () => {
-      
+
       const loanInformation: LoanInformation = {
         loanUserEmail: 'abc@gmail.com',
         loanNumber: 'ABC123',
@@ -69,13 +69,13 @@ describe('LoanService', () => {
         originationAccount: 'ABC123',
         originationDate:  new Date()
     };
-  
-      service.updateLoan(loanInformation).subscribe(users => {
+
+      service.updateLoan(loanInformation).subscribe((users) => {
         expect(users).toEqual(loanInformation);
       });
-  
+
       const req = httpMock.expectOne(`http://localhost:8765/api/loanInfo/updateLoanInfo`);
-      expect(req.request.method).toBe("POST");
+      expect(req.request.method).toBe('POST');
       req.flush(loanInformation);
     });
   });
