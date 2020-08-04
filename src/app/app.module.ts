@@ -17,12 +17,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AddUserComponent } from './board-admin/add-user/add-user.component';
+import { AddBorrowerComponent } from './board-admin/add-borrower/add.borrower.component';
 import { LoanSearchComponent } from './loan-search/loan-search.component';
 // import { LoanDetailsComponent } from './loan-search/loan-details/loan-details.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { AddLoanInformationComponent } from './board-admin/add-loan-information/add-loan-information.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { MatTableModule } from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     HomeComponent,
     BoardAdminComponent,
     ProfileComponent,
-    AddUserComponent,
+    AddBorrowerComponent,
     LoanSearchComponent,
     AddLoanInformationComponent
       ],
@@ -46,6 +48,8 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
     AgGridModule.withComponents([])
   ],
   entryComponents: [],

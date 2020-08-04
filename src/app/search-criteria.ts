@@ -1,6 +1,6 @@
 export class SearchCriteria {
-userFirstname: string;
-userLastname: string;
+borrowerFirstname: string;
+borrowerLastname: string;
 loanNumber: string;
 }
 

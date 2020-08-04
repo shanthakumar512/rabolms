@@ -8,15 +8,15 @@
             <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && search()" #f="ngForm" novalidate>
                 <div class="row">
                     <div class="col-sm-5 form-group">
-                        <label for="userFirstname">Enter First Name of User</label>
-                        <input type="text" class="form-control" name="userFirstname" [(ngModel)]="searchCriteria.userFirstname" #userFirstname="ngModel"
+                        <label for="borrowerFirstname">Enter First Name of User</label>
+                        <input type="text" class="form-control" name="borrowerFirstname" [(ngModel)]="searchCriteria.borrowerFirstname" #userFirstname="ngModel"
                         />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-5 form-group">
-                        <label for="userLastname">Enter Last Name of User</label>
-                        <input type="text" class="form-control" name="userLastname" [(ngModel)]="searchCriteria.userLastname" #userLastname="ngModel"
+                        <label for="borrowerLastname">Enter Last Name of User</label>
+                        <input type="text" class="form-control" name="borrowerLastname" [(ngModel)]="searchCriteria.borrowerLastname" #userLastname="ngModel"
                         />
 
                     </div>
@@ -29,20 +29,22 @@
                         <input type="text" class="form-control" name="loanNumber" [(ngModel)]="searchCriteria.loanNumber" #loanNumber="ngModel" />
                     </div>
                 </div>
-
+                <!-- <div class="row"> -->
                 <div class="form-group">
-                    <button class="btn btn-primary">Search Loan</button>
+                    <button class="btn btn-danger">Search Loan</button> 
                 </div>
+
+          
 
                 <div class="alert alert-success" *ngIf="f.submitted && isNotUnique">
                     <p> Search Result:</p>
                 </div>
                 <div *ngIf="isNotUnique">
-                    <h3>List of Loans for the User</h3>
-                    <table class="table table-striped table-bordered ">
-                        <thead class="thead-dark">
+                    <h3>List of Loans for the Borrower</h3>
+                    <table class="table  table-info table-bordered ">
+                        <thead class="thead-light">
                             <tr>
-                                <th>Loan User Email</th>
+                                <th>Borrower Email</th>
                                 <th>View Loan</th>
                                 <th *ngIf="isAdminRole">Update Loan</th>
                             </tr>
@@ -76,7 +78,7 @@
             <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && updateLoan()" #f="ngForm" novalidate>
 
                 <div class="form-group">
-                    <label for="loanUserEmail">Loan User Email</label>
+                    <label for="loanUserEmail">Borrower Email</label>
                     <input type="text" class="form-control" name="loanUserEmail" [(ngModel)]="loanInformation.loanUserEmail" required email minlength="1"
                         #loanUserEmail="ngModel" readonly/>
                     <div class="alert-danger" *ngIf="f.submitted && loanUserEmail.invalid">
@@ -114,13 +116,22 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="loanStatus">Loan Status</label>
                     <input type="text" class="form-control" name="loanStatus" [(ngModel)]="loanInformation.loanStatus" required #loanStatus="ngModel"
                         [readonly]="!isAdminRole || !isUpdateAllowed" />
                     <div class="alert-danger" *ngIf="f.submitted && loanStatus.invalid">
                         <div *ngIf="loanStatus.errors.required">Loan Status is required</div>
                     </div>
+                </div> -->
+                <div class="form-group">
+                    <label for="loanStatus">Select Loan Status:</label>  
+                        <select class="form-control" name="loanStatus"[(ngModel)]="loanInformation.loanStatus" [disabled]="!isAdminRole || !isUpdateAllowed">
+                          <option>ACTIVE</option>
+                          <option>CLOSED</option>
+                          <option>INITIATED</option>
+                          <option>WAIVED</option>
+                        </select>                 
                 </div>
 
                 <div class="form-group">

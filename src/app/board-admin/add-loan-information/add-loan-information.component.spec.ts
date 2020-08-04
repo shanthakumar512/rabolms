@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { Observable, of } from 'rxjs';
-import { LoanUserObj } from '../../loan-users';
+import { Borrower } from '../../borrower';
 import { PropertyAddress } from '../../property-address';
 import { LoanInformation } from '../../loan-information';
 import { LoanService } from '../../_services/loan.service';
@@ -29,11 +29,11 @@ const loanInformation: LoanInformation = {
     originationAccount: 'ABC123',
     originationDate:  new Date()
 };
-const loanUserObj: LoanUserObj = {
+const borrower: Borrower = {
 
-  userFirstname: 'user1',
-  userLastname : 'user1',
-  userEmail: 'abc@gmail.com',
+  borrowerFirstname: 'user1',
+  borrowerLastname : 'user1',
+  borrowerEmail: 'abc@gmail.com',
   propertyAddress: propertyAddresss,
 
  };

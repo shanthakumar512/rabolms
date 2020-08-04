@@ -10,8 +10,9 @@ import { Observable, of } from 'rxjs';
 import {LoanService} from '../_services/loan.service';
 import { PropertyAddress } from '../property-address';
 import { LoanInformation } from '../loan-information';
-import { LoanUserObj } from '../loan-users';
+import { Borrower } from '../borrower';
 import { SearchCriteria } from '../search-criteria';
+import { MatTableModule } from '@angular/material';
 class RouterMock {
 
   navigateByUrl(url: string) {
@@ -59,11 +60,11 @@ class MockLoanService extends LoanService {
       originationAccount: 'ABC123',
       originationDate:  new Date()
   };
-   loanUserObj: LoanUserObj = {
+   borrower: Borrower = {
 
-    userFirstname: 'user1',
-    userLastname : 'user1',
-    userEmail: 'abc@gmail.com',
+    borrowerFirstname: 'user1',
+    borrowerLastname : 'user1',
+    borrowerEmail: 'abc@gmail.com',
     propertyAddress: this.propertyAddresss
 
    };
@@ -80,7 +81,7 @@ describe('LoanSearchComponent', () => {
       {provide: LoanService, useClass: MockLoanService }],
       imports : [
         HttpClientTestingModule,
-         FormsModule,
+         FormsModule, MatTableModule,
         RouterTestingModule.withRoutes([]),
   ],
     })
@@ -137,13 +138,13 @@ describe('LoanSearchComponent', () => {
     fixture.detectChanges();
     const compile = fixture.debugElement.nativeElement;
     const h2tag = compile.querySelector('h2');
-    expect(h2tag.textContent).toBe(' Enter Loan search criteria');
+    expect(h2tag.textContent).toBe(' Loan search Form');
   }));
 
   it('should create onSubmit() and set isSuccessful as True', () => {
    const searchCriteria: SearchCriteria = {
-      userFirstname : 'user1',
-      userLastname: '',
+      borrowerFirstname : 'user1',
+      borrowerLastname: '',
       loanNumber: ''
       };
    const loanservice = fixture.debugElement.injector.get(LoanService);
@@ -174,7 +175,7 @@ describe('LoanSearchComponent', () => {
         expect(url).toBe('/user');
     }));
 
-    it('should call viewDetails()', () => {
+    it('should call reset()', () => {
       component.goBackToSearch();
       expect(component.isDisplayDetails).toBeFalsy();
     });

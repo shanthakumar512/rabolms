@@ -20,6 +20,9 @@ class MockTokenStorageServiceForAdmin extends TokenStorageService {
    };
    return user;
   }
+  getToken() {
+    return 'token';
+  }
 
  }
 

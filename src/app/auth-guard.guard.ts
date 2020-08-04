@@ -11,7 +11,7 @@ import { TokenStorageService } from './_services/token-storage.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router, private jwtHelper: JwtHelperService,
-     private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService) {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

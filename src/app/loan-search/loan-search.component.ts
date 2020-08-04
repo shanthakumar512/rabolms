@@ -3,10 +3,11 @@ import { LoanService } from '../_services/loan.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {TokenStorageService} from '../_services/token-storage.service';
 import {AuthService} from '../_services/auth.service';
-import { LoanUserObj } from '../loan-users';
+import { Borrower } from '../borrower';
 import { LoanInformation } from '../loan-information';
 import { PropertyAddress } from '../property-address';
 import { SearchCriteria } from '../search-criteria';
+
 
 @Component({
   selector: 'app-loan-search',
@@ -21,7 +22,7 @@ export class LoanSearchComponent implements OnInit {
   isAdminRole = false;
   isDisplayDetails = false;
   loanInformationList: Array<LoanInformation>;
-  loanUserObj: LoanUserObj;
+  borrower: Borrower;
   address: PropertyAddress;
   isUpdateAllowed = false;
   isUpdateSuccess = false;
@@ -30,8 +31,8 @@ export class LoanSearchComponent implements OnInit {
 
   constructor(private authService: AuthService, private loanService: LoanService, private router: Router,
               private token: TokenStorageService) {
-                this.loanUserObj = new LoanUserObj();
-                this.loanUserObj.propertyAddress = new PropertyAddress();
+                this.borrower = new Borrower();
+                this.borrower.propertyAddress = new PropertyAddress();
                 this.searchCriteria = new SearchCriteria();
               }
   ngOnInit() {
@@ -40,6 +41,8 @@ export class LoanSearchComponent implements OnInit {
     this.token.getUser().roles[0] === 'ROLE_ADMIN' ? this.isAdminRole = true : this.isAdminRole = false;
   }
   search() {
+    this.isDisplayDetails = false;
+    this.isSearchFailed = false;
     this.loanService.search(this.searchCriteria).subscribe((data) => {
         this.isNotUnique = true;
         this.isSearchFailed = false;
@@ -54,7 +57,6 @@ export class LoanSearchComponent implements OnInit {
   }
 
   viewDetails(index: number) {
-    // this.loanInformation = this.loanInformationList[index];
     this.setLoanInfoTobeUpdated(index);
     this.isUpdateAllowed = false;
     this.isDisplayDetails = true;
@@ -74,11 +76,12 @@ export class LoanSearchComponent implements OnInit {
     this.router.navigateByUrl('/user');
   }
 
-  public goBackToSearch() {
-    this.loanUserObj = new LoanUserObj();
+  goBackToSearch() {
+    this.borrower = new Borrower();
+    this.searchCriteria = new SearchCriteria();
     this.isDisplayDetails = false;
+    this.isSearchFailed = false;
   }
-
   public updateLoan() {
     this.loanService.updateLoan(this.loanInformation).subscribe((data) => {
       this.isUpdateSuccess = true;

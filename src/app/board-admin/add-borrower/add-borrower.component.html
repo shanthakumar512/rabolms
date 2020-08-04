@@ -1,0 +1,241 @@
+<!-- <header class="jumbotron"> -->
+
+<div class="col-md-10 ">
+    <div *ngIf="!isSuccessful">
+        <h2> Add New Borrower Information</h2>
+    </div>
+    <div class="card card-container bg-secondary">
+
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="borrowerFirstname">Borrower First Name</label> <input type="text"
+                            class="form-control" name="borrowerFirstname" [(ngModel)]="borrower.borrowerFirstname"
+                            required minlength="1" maxlength="20" #borrowerFirstname="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && borrowerFirstname.invalid">
+                            <div *ngIf="borrowerFirstname.errors.required"> FirstName is required</div>
+                            <div *ngIf="borrowerFirstname.errors.minlength">
+                                FirstName must be at least 1 characters
+                            </div>
+                            <div *ngIf="borrowerFirstname.errors.maxlength">
+                                FirstName must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="borrowerLastname">Borrower Last Name</label>
+                        <input type="text" class="form-control" name="borrowerLastname"
+                            [(ngModel)]="borrower.borrowerLastname" required minlength="1" maxlength="20"
+                            #borrowerLastname="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && borrowerLastname.invalid">
+                            <div *ngIf="borrowerLastname.errors.required">LastName is required</div>
+                            <div *ngIf="borrowerLastname.errors.minlength">
+                                LastName must be at least 1 characters
+                            </div>
+                            <div *ngIf="userLastname.errors.maxlength">
+                                LastName must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="borrowerEmail">Borrower Email</label>
+                        <input type="text" class="form-control" name="borrowerEmail"
+                            [(ngModel)]="borrower.borrowerEmail" required email minlength="1"
+                            #borrowerEmail="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && borrowerEmail.invalid">
+                            <div *ngIf="borrowerEmail.errors.required">Email is required</div>
+                            <div *ngIf="borrowerEmail.errors.minlength">
+                                Email must be at least 1 characters
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h4>Property Address</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="addressLine1">Address Line 1</label>
+                        <input type="text" class="form-control" name="addressLine1"
+                            [(ngModel)]="borrower.propertyAddress.addressLine1" required minlength="1" maxlength="50"
+                            #addressLine1="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && addressLine1.invalid">
+                            <div *ngIf="addressLine1.errors.required">Address Line1 is required</div>
+                            <div *ngIf="addressLine1.errors.minlength">
+                                Address Line 1 must be at least 1 characters
+                            </div>
+                            <div *ngIf="addressLine1.errors.maxlength">
+                                Address Line 1 must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="addressLine2">Address Line 2</label>
+                        <input type="text" class="form-control" name="addressLine2"
+                            [(ngModel)]="borrower.propertyAddress.addressLine2" maxlength="50"
+                            #addressLine2="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && addressLine2.invalid">
+                            <div *ngIf="addressLine2.errors.maxlength">
+                                Address Line 2 must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="addressLine3">Address Line 3</label>
+                        <input type="text" class="form-control" name="addressLine3"
+                            [(ngModel)]="borrower.propertyAddress.addressLine3" maxlength="50"
+                            #addressLine3="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && addressLine3.invalid">
+                            <div *ngIf="addressLine3.errors.maxlength">
+                                Address Line 3 must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" [(ngModel)]="borrower.propertyAddress.city"
+                            required minlength="1" maxlength="20" #city="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && city.invalid">
+                            <div *ngIf="city.errors.required">City is required</div>
+                            <div *ngIf="city.errors.minlength">
+                                City must be at least 1 characters
+                            </div>
+                            <div *ngIf="city.errors.maxlength">
+                                City must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" name="state"
+                            [(ngModel)]="borrower.propertyAddress.state" required minlength="1" maxlength="20"
+                            #state="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && state.invalid">
+                            <div *ngIf="state.errors.required">state is required</div>
+                            <div *ngIf="state.errors.minlength">
+                                state must be at least 1 characters
+                            </div>
+                            <div *ngIf="state.errors.maxlength">
+                                state must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" name="country"
+                            [(ngModel)]="borrower.propertyAddress.country" required minlength="1" maxlength="20"
+                            #country="ngModel" />
+                        <div class="alert-danger" *ngIf="f.submitted && country.invalid">
+                            <div *ngIf="country.errors.required">Country is required</div>
+                            <div *ngIf="country.errors.minlength">
+                                Country must be at least 1 characters
+                            </div>
+                            <div *ngIf="country.errors.maxlength">
+                                Country must be at most 20 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger ">Add User</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Adding New Loan failed!
+                <br />{{ errorMessage }}
+            </div>
+        </form>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            New Loan entry is Successful!!
+        </div>
+        <div *ngIf="isSuccessful">
+            <h3>List of Borrowers</h3>
+            <section class='tableSection'>
+
+                <mat-table class="matTable" [dataSource]="dataSource">
+          
+                  <ng-container matColumnDef="borrowerFirstname">
+                    <mat-header-cell *matHeaderCellDef> Borrower First Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.borrowerFirstname}} </mat-cell>
+                  </ng-container>
+          
+          
+                  <ng-container matColumnDef="borrowerLastname">
+                    <mat-header-cell *matHeaderCellDef>Borrower Last Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.borrowerLastname}} </mat-cell>
+                  </ng-container>
+          
+          
+                  <ng-container matColumnDef="borrowerEmail">
+                    <mat-header-cell *matHeaderCellDef> Borrower Email </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.borrowerEmail}} </mat-cell>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="addressLine1">
+                    <mat-header-cell *matHeaderCellDef> Address Line 1 </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.propertyAddress.addressLine1}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="addressLine2">
+                    <mat-header-cell *matHeaderCellDef> Address Line 2</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.propertyAddress.addressLine2}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="addressLine3">
+                    <mat-header-cell *matHeaderCellDef> Address Line 3 </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.propertyAddress.addressLine3}} </mat-cell>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="city">
+                    <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.propertyAddress.city}} </mat-cell>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="state">
+                    <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.propertyAddress.state}} </mat-cell>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="country">
+                    <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.propertyAddress.country}} </mat-cell>
+                  </ng-container>
+          
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          
+                </mat-table>
+              
+              </section>
+        </div>
+        <mat-paginator #paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" [hidden]="!isSuccessful">
+        </mat-paginator>
+        <div class="text-right mb-8">
+            <button class="btn btn-danger" (click)="goBack()">Back to Admin</button>
+        </div>
+    </div>
+</div>

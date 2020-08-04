@@ -3,6 +3,8 @@ import { LoanInformation } from '../../loan-information';
 import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { LoanService } from '../../_services/loan.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-loan-information',
@@ -15,12 +17,14 @@ export class AddLoanInformationComponent implements OnInit {
   errorMessage = '';
   isSuccessful = false;
   isNewLoanEntryFailed = false;
+  borrowerEmails: Array<string>;
   constructor(private loanService: LoanService, private router: Router) {
 
     this.loanInformation = new LoanInformation();
   }
 
   ngOnInit() {
+   this.loanService.loadAllBorrowerEmails().subscribe( (data) => this.borrowerEmails = data);
   }
 
   onSubmit() {

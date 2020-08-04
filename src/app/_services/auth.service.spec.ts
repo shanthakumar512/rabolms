@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { PropertyAddress } from '../property-address';
-import { LoanUserObj } from '../loan-users';
+import { Borrower } from '../borrower';
 import { User, Role } from '../user';
 import { TokenStorageService } from './token-storage.service';
 
@@ -117,20 +117,20 @@ describe('AuthService', () => {
         state : 'state',
         country : 'country'
       };
-      const loanUserObj: LoanUserObj = {
+      const borrower: Borrower = {
 
-        userFirstname: 'user1',
-        userLastname : 'user1',
-        userEmail: 'abc@gmail.com',
+        borrowerFirstname: 'user1',
+        borrowerLastname : 'user1',
+        borrowerEmail: 'abc@gmail.com',
         propertyAddress: propertyAddresss,
        };
-      service.addNewUser(loanUserObj).subscribe((users) => {
-        expect(users).toEqual(loanUserObj);
+      service.addNewUser(borrower).subscribe((users) => {
+        expect(users).toEqual(borrower);
       });
 
       const req = httpMock.expectOne(`http://localhost:8765/api/loanUser/addLoanUser`);
       expect(req.request.method).toBe('POST');
-      req.flush(loanUserObj);
+      req.flush(borrower);
     });
   });
 

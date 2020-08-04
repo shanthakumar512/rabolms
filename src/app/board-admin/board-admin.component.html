@@ -1,25 +1,91 @@
-<div class="container" *ngIf="isLoggedIn; else loggedOut">
+<div class="row">
 
-  <header class="jumbotron">
+  <div class="column right">
+    <section class='tableSection'>
+
+      <mat-table class="matTable" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="borrowerFirstname">
+          <mat-header-cell *matHeaderCellDef> Borrower First Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.borrowerFirstname}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="borrowerLastname">
+          <mat-header-cell *matHeaderCellDef>Borrower Last Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.borrowerLastname}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="borrowerEmail">
+          <mat-header-cell *matHeaderCellDef> Borrower Email </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.borrowerEmail}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="addressLine1">
+          <mat-header-cell *matHeaderCellDef> Address Line 1 </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.propertyAddress.addressLine1}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="addressLine2">
+          <mat-header-cell *matHeaderCellDef> Address Line 2</mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.propertyAddress.addressLine2}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="addressLine3">
+          <mat-header-cell *matHeaderCellDef> Address Line 3 </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.propertyAddress.addressLine3}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+          <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.propertyAddress.city}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+          <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.propertyAddress.state}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="country">
+          <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.propertyAddress.country}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+
+      <mat-paginator #paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </section>
+  </div>
+
+<div class="column">
+  <div class="container" *ngIf="isLoggedIn; else loggedOut">
+
+
     <div *ngIf="adminUser">
-    <p>Please click on Add User Info to add New User information</p>
-    <button class="btn btn-info" (click)="openAddUserForm()">Add User Info</button>
-  </div>
+      <div class="container p-3 my-3 bg-secondary text-white">
+        <h2>Add New Borrower</h2>
+        <p>Please click on Add button to add New Borrower information</p>
+        <button class="btn btn-danger" (click)="openAddUserForm()">Add Borrower</button>
+    
+        <h2>Add New Loans </h2>
+        <p>Please click on Add Loan Info to add New Loan information</p>
+        <button class="btn btn-danger" (click)="openAddLoanInformationForm()">Add Loan</button>
 
-  <div *ngIf="adminUser">
-    <p>Please click on Add Loan Info button to add New Loan information</p>
-    <button class="btn btn-info" (click)="openAddLoanInformationForm()">Add Loan Info</button>
-  </div>
-
-    <p>Please click on Search Loans button to Search and Modify Existing Loan information</p>
-    <div>
-      <button type="button" class="btn btn-info" (click)="openSearchForm()">
-        Search Loans
-      </button>
+        <h2>Search Loans </h2>
+        <p>Please click on Search Loans to search Loan information</p>
+        <button class="btn btn-danger" (click)="openAddLoanInformationForm()">Search Loans</button>
+      </div>
     </div>
-  </header>
-</div>
 
-<ng-template #loggedOut class="alert-danger">
-  Please login!!
-</ng-template>
+
+  </div>
+
+  <ng-template #loggedOut class="alert-danger">
+    Please login!!
+  </ng-template>
+
+</div>
+</div>

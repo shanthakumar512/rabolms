@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {TokenStorageService} from './token-storage.service';
-import {LoanUserObj} from '../loan-users';
+import {Borrower} from '../borrower';
 
 const AUTH_API = 'http://localhost:8765/api/auth/';
 
@@ -26,13 +26,13 @@ export class AuthService {
     }, httpOptions);
   }
 
-  addNewUser(user: LoanUserObj): Observable<any> {
+  addNewUser(borrower: Borrower): Observable<any> {
 
     return this.http.post('http://localhost:8765/api/loanUser/addLoanUser', {
-      userFirstname: user.userFirstname,
-      userLastname: user.userLastname,
-      userEmail: user.userEmail,
-      propertyAddress: user.propertyAddress
+      borrowerFirstname: borrower.borrowerFirstname,
+      borrowerLastname: borrower.borrowerLastname,
+      borrowerEmail: borrower.borrowerEmail,
+      propertyAddress: borrower.propertyAddress
     }, httpOptions);
   }
 

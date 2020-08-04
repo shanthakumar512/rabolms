@@ -1,15 +1,17 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AddUserComponent } from './add-user.component';
+import { AddBorrowerComponent } from './add.borrower.component';
 import { FormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { Observable, of } from 'rxjs';
-import { LoanUserObj } from '../../loan-users';
+import { Borrower } from '../../borrower';
 import { PropertyAddress } from '../../property-address';
 import { LoanInformation } from '../../loan-information';
-// import {LoanUser} from '../../loan-user';
+import { MatTableModule, MatTableDataSource, MatPaginatorModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 const propertyAddresss: PropertyAddress = {
   addressLine1 : 'addressLine1',
   addressLine2 : 'addressLine2',
@@ -28,11 +30,11 @@ const loanInformation: LoanInformation = {
     originationAccount: 'ABC123',
     originationDate:  new Date()
 };
-const loanUserObj: LoanUserObj = {
+const borrower: Borrower = {
 
-  userFirstname: 'user1',
-  userLastname : 'user1',
-  userEmail: 'abc@gmail.com',
+  borrowerFirstname: 'user1',
+  borrowerLastname : 'user1',
+  borrowerEmail: 'abc@gmail.com',
   propertyAddress: propertyAddresss,
 
  };
@@ -49,22 +51,22 @@ login(credentials): Observable<string> {
 
 
 describe('AddUserComponent', () => {
-  let component: AddUserComponent;
-  let fixture: ComponentFixture<AddUserComponent>;
+  let component: AddBorrowerComponent;
+  let fixture: ComponentFixture<AddBorrowerComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddUserComponent],
+      declarations: [AddBorrowerComponent],
       providers : [ { provide: AuthService, useClass: MockAuthService} ],
       imports: [
         HttpClientTestingModule,
-        FormsModule,
+        FormsModule, MatTableModule, MatPaginatorModule, BrowserAnimationsModule,
         RouterTestingModule.withRoutes([]),
       ],
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(AddUserComponent);
+    fixture = TestBed.createComponent(AddBorrowerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

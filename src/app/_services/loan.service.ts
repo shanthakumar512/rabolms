@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders , HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoanUserObj } from '../loan-users';
+import { Borrower } from '../borrower';
 import { LoanInformation } from '../loan-information';
 import { SearchCriteria } from '../search-criteria';
 
@@ -19,8 +19,8 @@ export class LoanService {
 
   search(searchCriteria: SearchCriteria): Observable<any> {
     return this.http.post<LoanInformation>('http://localhost:8765/api/searchinfo/loanInformation' , {
-      userFirstname: searchCriteria.userFirstname,
-      userLastname: searchCriteria.userLastname,
+      borrowerFirstname: searchCriteria.borrowerFirstname,
+      borrowerLastname: searchCriteria.borrowerLastname,
       loanNumber : searchCriteria.loanNumber
     }, httpOptions);
   }
@@ -33,6 +33,16 @@ export class LoanService {
       propertyAddress: user.propertyAddress
     }, httpOptions);
   } */
+
+
+  loadAllBorrowerEmails(): Observable<any> {
+    return this.http.get('http://localhost:8765/api/loanUser/getAllBorrowerEmails', httpOptions);
+  }
+
+  loadAllBorrowers(): Observable<any> {
+    return this.http.get('http://localhost:8765/api/loanUser/getLoanUsers', httpOptions);
+  }
+
 
   addNewLoan(loanInfo: LoanInformation): Observable<any> {
 
@@ -49,7 +59,6 @@ export class LoanService {
   }
 
   updateLoan(loanInfo: LoanInformation): Observable<any> {
-
     return this.http.post('http://localhost:8765/api/loanInfo/updateLoanInfo', {
       loanUserEmail: loanInfo.loanUserEmail,
       loanNumber: loanInfo.loanNumber,

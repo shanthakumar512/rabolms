@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoanService } from './loan.service';
 import { LoanInformation } from '../loan-information';
+import { SearchCriteria } from '../search-criteria';
 
 describe('LoanService', () => {
   let injector: TestBed;
@@ -77,6 +78,37 @@ describe('LoanService', () => {
       const req = httpMock.expectOne(`http://localhost:8765/api/loanInfo/updateLoanInfo`);
       expect(req.request.method).toBe('POST');
       req.flush(loanInformation);
+    });
+  });
+
+  describe('#updateLoan', () => {
+    it('should return an Observable<LoanInformation[]>', () => {
+
+      const searchCriteria: SearchCriteria = {
+        borrowerFirstname : '',
+        borrowerLastname: '',
+        loanNumber: 'ABC123'
+        };
+      const loanInformation: LoanInformation = {
+          loanUserEmail: 'abc@gmail.com',
+          loanNumber: 'ABC123',
+          loanAmount: 13215,
+          loanTerm: 45,
+          loanStatus: 'ACTIVE',
+          loanMgtFees: 4500,
+          originationAccount: 'ABC123',
+          originationDate:  new Date()
+      };
+
+      service.search(searchCriteria).subscribe((loaninfo) => {
+        console.log('****************' + loaninfo.loanNumber);
+        expect(loaninfo.loanNumber).toEqual(loanInformation.loanNumber);
+      });
+      // return this.http.post<LoanInformation>('http://localhost:8765/api/searchinfo/loanInformation' , {
+
+      const req = httpMock.expectOne(`http://localhost:8765/api/searchinfo/loanInformation`);
+      expect(req.request.method).toBe('POST');
+      req.flush(searchCriteria);
     });
   });
 

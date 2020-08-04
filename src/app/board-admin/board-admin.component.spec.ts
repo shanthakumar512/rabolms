@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { Observable, of } from 'rxjs';
 import {Role, User} from '../user';
+import { MatTableModule } from '@angular/material';
 
 class RouterMock {
 
@@ -56,7 +57,7 @@ describe('BoardAdminComponent', () => {
       providers : [{provide: Router, useClass: RouterMock},
         { provide: TokenStorageService, useClass: MockTokenStorageService}],
       imports : [
-      HttpClientTestingModule,
+      HttpClientTestingModule, MatTableModule,
       FormsModule,
       RouterTestingModule.withRoutes([]),
 ], schemas: [
@@ -75,13 +76,7 @@ describe('BoardAdminComponent', () => {
     const app = fixture.debugElement.componentInstance;
     return { fixture, app };
   }
-  it('should have a tag as \'RaboBank Loan Management system!\'', async(() => {
-    const { app } = setup();
-    fixture.detectChanges();
-    const compile = fixture.debugElement.nativeElement;
-    const ptag = compile.querySelector('p');
-    expect(ptag.textContent).toBe('Please click on Search Loans button to Search and Modify Existing Loan information');
-  }));
+
 
   it('should create', () => {
 
@@ -97,7 +92,7 @@ describe('BoardAdminComponent', () => {
         expect(url).toBe('/adduser');
     }));
 
-    it('should call Router.navigateByUrl("/searchLoan") with the ID of the form', inject([Router], (router: Router) => {
+    /* it('should call Router.navigateByUrl("/searchLoan") with the ID of the form', inject([Router], (router: Router) => {
       const spy = spyOn(router, 'navigateByUrl');
 
       component.openSearchForm();
@@ -105,7 +100,7 @@ describe('BoardAdminComponent', () => {
       const url = spy.calls.first().args[0];
 
       expect(url).toBe('/searchLoan');
-  }));
+  })); */
 
     it('should call Router.navigateByUrl("/addLoanInfo") with the ID of the form', inject([Router], (router: Router) => {
     const spy = spyOn(router, 'navigateByUrl');

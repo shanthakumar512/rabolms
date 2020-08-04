@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 
 @Component({
@@ -7,12 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  content: string;
+  currentUser: any;
 
-  constructor() { }
+  constructor(private token: TokenStorageService) { }
 
   ngOnInit() {
-    this.content = 'Welcome to Rabobank Loan Management system. Users can verify the details' +
-    'regarding their Loans. Admins can Add a new Loan detail or Modify data for existing loans';
+    this.currentUser = this.token.getUser();
   }
 }
