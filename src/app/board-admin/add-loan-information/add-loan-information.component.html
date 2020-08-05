@@ -54,10 +54,11 @@
                 <div class="form-group">
                     <label for="loanStatus" class="control-label">Select Loan Status:</label>  
                         <select class="form-control" id="loanStatus" name="loanStatus"[(ngModel)]="loanInformation.loanStatus" >
-                          <option>ACTIVE</option>
-                          <option>CLOSED</option>
-                          <option>INITIATED</option>
-                          <option>WAIVED</option>
+                          <option value="0">ACTIVE</option>
+                          <option value="1">CLOSED</option>
+                          <option value="2">INITIATED</option>
+                          <option value="3">WAIVED</option>
+                          <option value="4">CAMCELLED</option>
                         </select>                 
                 </div>
             </div>

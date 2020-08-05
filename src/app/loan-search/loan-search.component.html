@@ -18,7 +18,6 @@
                         <label for="borrowerLastname">Enter Last Name of User</label>
                         <input type="text" class="form-control" name="borrowerLastname" [(ngModel)]="searchCriteria.borrowerLastname" #userLastname="ngModel"
                         />
-
                     </div>
                 </div>
 
@@ -29,7 +28,7 @@
                         <input type="text" class="form-control" name="loanNumber" [(ngModel)]="searchCriteria.loanNumber" #loanNumber="ngModel" />
                     </div>
                 </div>
-                <!-- <div class="row"> -->
+
                 <div class="form-group">
                     <button class="btn btn-danger">Search Loan</button> 
                 </div>
@@ -165,7 +164,7 @@
 
                 <div class="alert alert-warning" *ngIf="f.submitted && !isUpdateSuccess">
                     Updating Loan Details failed!
-                    <br/>{{ errorMessage }}
+                    <br/>{{ errormessage }}
                 </div>
             </form>
         </div>

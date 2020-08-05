@@ -141,7 +141,7 @@ describe('LoanSearchComponent', () => {
     expect(h2tag.textContent).toBe(' Loan search Form');
   }));
 
-  it('should create onSubmit() and set isSuccessful as True', () => {
+  it('should search', () => {
    const searchCriteria: SearchCriteria = {
       borrowerFirstname : 'user1',
       borrowerLastname: '',
@@ -156,17 +156,6 @@ describe('LoanSearchComponent', () => {
    expect(component.isNotUnique).toBeTruthy();
    expect(component.isSearchFailed).toBeFalsy();
   });
-
-  it('should create updateLoan() and set isSuccessful as True', () => {
-    const loanservice = fixture.debugElement.injector.get(LoanService);
-    const response = '';
-    spyOn(loanservice, 'updateLoan').and.returnValue(of(response));
-    component.updateLoan();
-    fixture.detectChanges();
-    expect(component.isUpdateSuccess).toBeTruthy();
-  });
-
-
   describe('#displayForm', () => {
     it('should call Router.navigateByUrl("/user") with the ID of the form', inject([Router], (router: Router) => {
         const spy = spyOn(router, 'navigateByUrl');
