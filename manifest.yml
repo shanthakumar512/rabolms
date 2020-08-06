@@ -1,0 +1,7 @@
+applications:
+- name: rabolms
+  memory: 112M
+  path: dist/
+  random-route: false
+  buildpacks:
+  - staticfile_buildpack
