@@ -25,6 +25,7 @@ import { AddLoanInformationComponent } from './board-admin/add-loan-information/
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {HashLocationStrategy,LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   entryComponents: [],
   providers: [authInterceptorProviders,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    {provide: LocationStrategy, useValue: HashLocationStrategy },
     JwtHelperService],
   bootstrap: [AppComponent]
 
