@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import {TokenStorageService} from './token-storage.service';
 import {Borrower} from '../borrower';
 
-const AUTH_API = 'http://localhost:8765/api/auth/';
+// const AUTH_API = 'http://localhost:8765/api/';
+
+const AUTH_API ="https://userauthentication.cfapps.io/api/"
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,7 +22,7 @@ export class AuthService {
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
   login(credentials): Observable<any> {
-    return this.http.post(AUTH_API + 'signin', {
+    return this.http.post(AUTH_API + 'auth/signin', {
       username: credentials.username,
       password: credentials.password
     }, httpOptions);
@@ -28,7 +30,7 @@ export class AuthService {
 
   addNewUser(borrower: Borrower): Observable<any> {
 
-    return this.http.post('http://localhost:8765/api/loanUser/addLoanUser', {
+    return this.http.post(AUTH_API+ 'loanUser/addLoanUser', {
       borrowerFirstname: borrower.borrowerFirstname,
       borrowerLastname: borrower.borrowerLastname,
       borrowerEmail: borrower.borrowerEmail,

@@ -9,6 +9,8 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
+// const APP_URI='http://localhost:8765/api/';
+const  APP_URI='https://userauthentication.cfapps.io/';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,7 @@ export class LoanService {
   constructor(private http: HttpClient) { }
 
   search(searchCriteria: SearchCriteria): Observable<any> {
-    return this.http.post<LoanInformation>('http://localhost:8765/api/searchinfo/loanInformation' , {
+    return this.http.post<LoanInformation>(APP_URI+'searchinfo/loanInformation' , {
       borrowerFirstname: searchCriteria.borrowerFirstname,
       borrowerLastname: searchCriteria.borrowerLastname,
       loanNumber : searchCriteria.loanNumber
@@ -36,17 +38,17 @@ export class LoanService {
 
 
   loadAllBorrowerEmails(): Observable<any> {
-    return this.http.get('http://localhost:8765/api/loanUser/getAllBorrowerEmails', httpOptions);
+    return this.http.get(APP_URI+'loanUser/getAllBorrowerEmails', httpOptions);
   }
 
   loadAllBorrowers(): Observable<any> {
-    return this.http.get('http://localhost:8765/api/loanUser/getLoanUsers', httpOptions);
+    return this.http.get(APP_URI+'loanUser/getLoanUsers', httpOptions);
   }
 
 
   addNewLoan(loanInfo: LoanInformation): Observable<any> {
 
-    return this.http.post<string>('http://localhost:8765/api/loanInfo/addLoanInfo', {
+    return this.http.post<string>(APP_URI+'loanInfo/addLoanInfo', {
       loanUserEmail: loanInfo.loanUserEmail,
       loanNumber: loanInfo.loanNumber,
       loanAmount: loanInfo.loanAmount,
@@ -59,7 +61,7 @@ export class LoanService {
   }
 
   updateLoan(loanInfo: LoanInformation): Observable<any> {
-    return this.http.post('http://localhost:8765/api/loanInfo/updateLoanInfo', {
+    return this.http.post(APP_URI+'loanInfo/updateLoanInfo', {
       loanUserEmail: loanInfo.loanUserEmail,
       loanNumber: loanInfo.loanNumber,
       loanAmount: loanInfo.loanAmount,
