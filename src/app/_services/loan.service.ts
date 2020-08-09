@@ -9,8 +9,8 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
-// const APP_URI='http://localhost:8765/api/';
-const  APP_URI='https://userauthentication.cfapps.io/';
+const APP_URI='http://localhost:8765/api/';
+// const  APP_URI='https://userauthentication.cfapps.io/api';
 
 @Injectable({
   providedIn: 'root'
