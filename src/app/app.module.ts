@@ -56,7 +56,7 @@ import {HashLocationStrategy,LocationStrategy} from '@angular/common';
   entryComponents: [],
   providers: [authInterceptorProviders,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    {provide: LocationStrategy, useValue: HashLocationStrategy },
+    // {provide: LocationStrategy, useValue: HashLocationStrategy },
     JwtHelperService],
   bootstrap: [AppComponent]
 
