@@ -62,7 +62,7 @@ public dataSource = new MatTableDataSource();
         this.ngAfterViewInit();
       },
       (err) => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = err.error.details[0];
         this.isSignUpFailed = true;
       }
     );
