@@ -10,7 +10,7 @@ const httpOptions = {
 };
 
 // const APP_URI='http://localhost:8765/api/';
-const  APP_URI='https://userauthentication.cfapps.io/api';
+const  APP_URI='https://userauthentication.cfapps.io/api/';
 
 @Injectable({
   providedIn: 'root'
