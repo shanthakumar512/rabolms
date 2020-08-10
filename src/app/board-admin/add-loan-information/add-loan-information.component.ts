@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { LoanService } from '../../_services/loan.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-add-loan-information',
