@@ -113,15 +113,6 @@
                         <div *ngIf="loanTerm.errors.required">Loan Term is required</div>
                     </div>
                 </div>
-
-                <!-- <div class="form-group">
-                    <label for="loanStatus">Loan Status</label>
-                    <input type="text" class="form-control" name="loanStatus" [(ngModel)]="loanInformation.loanStatus" required #loanStatus="ngModel"
-                        [readonly]="!isAdminRole || !isUpdateAllowed" />
-                    <div class="alert-danger" *ngIf="f.submitted && loanStatus.invalid">
-                        <div *ngIf="loanStatus.errors.required">Loan Status is required</div>
-                    </div>
-                </div> -->
                 <div class="form-group">
                     <label for="loanStatus">Select Loan Status:</label>  
                     <select class="form-control" id="loanStatus" name="loanStatus"[(ngModel)]="loanInformation.loanStatus"  [disabled]="!isAdminRole || !isUpdateAllowed" >
