@@ -166,13 +166,13 @@
             </div>
 
             <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-                Adding New Loan failed!
+                Adding New Borrower Information failed!
                 <br />{{ errorMessage }}
             </div>
         </form>
 
         <div class="alert alert-success" *ngIf="isSuccessful">
-            New Loan entry is Successful!!
+            New Borrower Information added Successfully!!
         </div>
         <div *ngIf="isSuccessful">
             <h3>List of Borrowers</h3>
