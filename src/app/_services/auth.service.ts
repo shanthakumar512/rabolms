@@ -6,7 +6,7 @@ import {Borrower} from '../borrower';
 
 // const AUTH_API = 'http://localhost:8765/api/';
 
-const AUTH_API ="https://userauthentication.cfapps.io/api/"
+const AUTH_API = 'https://userauthentication.cfapps.io/api/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,7 +30,7 @@ export class AuthService {
 
   addNewUser(borrower: Borrower): Observable<any> {
 
-    return this.http.post(AUTH_API+ 'loanUser/addLoanUser', {
+    return this.http.post(AUTH_API + 'loanUser/addLoanUser', {
       borrowerFirstname: borrower.borrowerFirstname,
       borrowerLastname: borrower.borrowerLastname,
       borrowerEmail: borrower.borrowerEmail,

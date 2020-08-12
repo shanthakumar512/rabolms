@@ -81,7 +81,7 @@ export class LoanSearchComponent implements OnInit {
     this.searchCriteria = new SearchCriteria();
     this.isDisplayDetails = false;
     this.isSearchFailed = false;
-    this.isNotUnique=!this.isNotUnique;
+    this.isNotUnique = !this.isNotUnique;
   }
   public updateLoan() {
     this.loanService.updateLoan(this.loanInformation).subscribe((data) => {
