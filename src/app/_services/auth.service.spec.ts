@@ -7,6 +7,8 @@ import { Borrower } from '../borrower';
 import { User, Role } from '../user';
 import { TokenStorageService } from './token-storage.service';
 
+const AUTH_API = 'https://userauthentication.cfapps.io/api';
+
 class MockTokenStorageService extends TokenStorageService {
 
   getUser() {
@@ -100,7 +102,7 @@ describe('AuthService', () => {
         expect(users).toEqual(user);
       });
 
-      const req = httpMock.expectOne(`http://localhost:8765/api/auth/signin`);
+      const req = httpMock.expectOne(AUTH_API + `/auth/signin`);
       expect(req.request.method).toBe('POST');
       req.flush(user);
     });
@@ -128,7 +130,7 @@ describe('AuthService', () => {
         expect(users).toEqual(borrower);
       });
 
-      const req = httpMock.expectOne(`http://localhost:8765/api/loanUser/addLoanUser`);
+      const req = httpMock.expectOne(AUTH_API + `/loanUser/addLoanUser`);
       expect(req.request.method).toBe('POST');
       req.flush(borrower);
     });

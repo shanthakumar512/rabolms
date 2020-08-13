@@ -5,6 +5,8 @@ import { LoanService } from './loan.service';
 import { LoanInformation } from '../loan-information';
 import { SearchCriteria } from '../search-criteria';
 
+const AUTH_API = 'https://userauthentication.cfapps.io/api';
+
 describe('LoanService', () => {
   let injector: TestBed;
   let service: LoanService;
@@ -51,7 +53,7 @@ describe('LoanService', () => {
         expect(users).toEqual(loanInformation);
       });
 
-      const req = httpMock.expectOne(`http://localhost:8765/api/loanInfo/addLoanInfo`);
+      const req = httpMock.expectOne(AUTH_API + `/loanInfo/addLoanInfo`);
       expect(req.request.method).toBe('POST');
       req.flush(loanInformation);
     });
@@ -75,7 +77,7 @@ describe('LoanService', () => {
         expect(users).toEqual(loanInformation);
       });
 
-      const req = httpMock.expectOne(`http://localhost:8765/api/loanInfo/updateLoanInfo`);
+      const req = httpMock.expectOne(AUTH_API + `/loanInfo/updateLoanInfo`);
       expect(req.request.method).toBe('POST');
       req.flush(loanInformation);
     });
@@ -101,12 +103,9 @@ describe('LoanService', () => {
       };
 
       service.search(searchCriteria).subscribe((loaninfo) => {
-        console.log('****************' + loaninfo.loanNumber);
         expect(loaninfo.loanNumber).toEqual(loanInformation.loanNumber);
       });
-      // return this.http.post<LoanInformation>('http://localhost:8765/api/searchinfo/loanInformation' , {
-
-      const req = httpMock.expectOne(`http://localhost:8765/api/searchinfo/loanInformation`);
+      const req = httpMock.expectOne(AUTH_API + `/searchinfo/loanInformation`);
       expect(req.request.method).toBe('POST');
       req.flush(searchCriteria);
     });

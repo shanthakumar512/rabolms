@@ -27,16 +27,6 @@ export class LoanService {
     }, httpOptions);
   }
 
-  /* updateUser(user: LoanUserObj): Observable<any> {
-    return this.http.put<LoanUserObj>('http://localhost:8081/api/auth/' + 'updateUser', {
-      userFirstname: user.userFirstname,
-      userLastname: user.userLastname,
-      userEmail: user.userEmail,
-      propertyAddress: user.propertyAddress
-    }, httpOptions);
-  } */
-
-
   loadAllBorrowerEmails(): Observable<any> {
     return this.http.get(APP_URI + 'loanUser/getAllBorrowerEmails', httpOptions);
   }

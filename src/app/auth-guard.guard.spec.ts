@@ -21,7 +21,7 @@ class RouterMock {
 
   serializeUrl(url: string) {
      return url;
-  } // Dummy further methods here if required
+  }
 
 }
 class MockAuthService extends AuthService {

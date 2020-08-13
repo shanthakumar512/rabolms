@@ -17,7 +17,6 @@ export class AddBorrowerComponent implements OnInit, AfterViewInit {
   isSignUpFailed = false;
   errorMessage = '';
   borrower: Borrower;
-  // borrowerList: Array<Borrower>;
   propertyAddress: PropertyAddress;
   borrowers: Array<Borrower>;
   public numberOfBorrowers: number;

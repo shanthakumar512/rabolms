@@ -48,9 +48,7 @@
                             </tr>
                         </thead>
                         <tr *ngFor="let loanInfo Of loanInformationList; let indexOfelement=index;">
-                            <!-- <td>{{loanInfo.loanUserEmail}}</td> -->
                             <td>{{loanInfo.loanNumber}}</td>
-                            <!-- <td>{{loanInfo.loanStatus}}</td> -->
                             <td>
                                 <button mdbBtn color="blue" rounded="true" type="button" class="m-0" (click)="viewDetails(indexOfelement)">View</button>
                             </td>
